@@ -19,7 +19,7 @@ environment:
 
 dependencies:
   http: ^1.2.0
-  testcontainers_core: ^0.1.0
+  testcontainers_core: ^1.0.0
 
 dev_dependencies:
   lints: ^3.0.0
