@@ -265,7 +265,8 @@ void main() {
       expect(result.headers['server'], equals('Docker/24.0.0'));
     });
 
-    test('malformed response (no CRLF-CRLF) returns status 500 and body is '
+    test(
+        'malformed response (no CRLF-CRLF) returns status 500 and body is '
         'the raw bytes', () {
       // No blank line separating headers from body → header parser fails.
       final malformed = _bytes('HTTP/1.0 200 OK\r\nsome garbage');
@@ -282,8 +283,7 @@ void main() {
 
     test('chunked body is decoded transparently', () {
       // Build the header section manually and append chunked body.
-      final headerStr =
-          'HTTP/1.0 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n';
+      final headerStr = 'HTTP/1.0 200 OK\r\nTransfer-Encoding: chunked\r\n\r\n';
       final headerBytes = utf8.encode(headerStr);
       final chunkedBody = Uint8List.fromList([
         ..._chunk('hello'),

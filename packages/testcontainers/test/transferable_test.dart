@@ -168,7 +168,8 @@ void main() {
     });
 
     test('empty BytesTransferable produces a 0-byte entry in the tar', () {
-      final tar = buildTransferTar(BytesTransferable(Uint8List(0)), 'empty.txt');
+      final tar =
+          buildTransferTar(BytesTransferable(Uint8List(0)), 'empty.txt');
       final archive = TarDecoder().decodeBytes(tar);
       expect(archive.files, hasLength(1));
       expect(archive.files.first.name, equals('empty.txt'));

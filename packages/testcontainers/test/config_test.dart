@@ -249,7 +249,8 @@ void main() {
       expect(config.ryukPrivileged, isFalse);
     });
 
-    test('_resolveFlag covers ryukDisabled through same mechanism (truthy)', () {
+    test('_resolveFlag covers ryukDisabled through same mechanism (truthy)',
+        () {
       // Both ryukPrivileged and ryukDisabled use the same _resolveFlag helper.
       // Verify that the truthy path also works for ryukDisabled.
       final config = TestcontainersConfiguration();

@@ -657,8 +657,7 @@ void main() {
     test(
       'DockerCompose services list is unmodifiable',
       () {
-        final dc =
-            DockerCompose(context: '/tmp', services: ['web', 'db']);
+        final dc = DockerCompose(context: '/tmp', services: ['web', 'db']);
         expect(
           () => dc.services!.add('cache'),
           throwsUnsupportedError,

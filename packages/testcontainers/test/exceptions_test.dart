@@ -111,7 +111,9 @@ void main() {
       // Verify that a generic catch (e) catches all four types.
       void throwAndCatchAsException(Exception ex) {
         // ignore: only_throw_errors
-        try { throw ex; } on Exception catch (_) {}
+        try {
+          throw ex;
+        } on Exception catch (_) {}
       }
 
       throwAndCatchAsException(const ContainerStartException('a'));

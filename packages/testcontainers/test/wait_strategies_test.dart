@@ -271,7 +271,8 @@ void main() {
       expect(callCount, greaterThanOrEqualTo(3));
     });
 
-    test('keeps polling when status is "restarting" then transitions to "running"',
+    test(
+        'keeps polling when status is "restarting" then transitions to "running"',
         () async {
       // 'restarting' is also in continueStatuses — poll continues until running.
       var callCount = 0;
@@ -289,7 +290,8 @@ void main() {
       expect(callCount, greaterThanOrEqualTo(3));
     });
 
-    test('throws StateError immediately when status is "not_started"', () async {
+    test('throws StateError immediately when status is "not_started"',
+        () async {
       // 'not_started' is NOT in continueStatuses and is not 'running' →
       // throwStopIteration() fires immediately; StateError, not TimeoutException.
       when(() => target.status).thenReturn('not_started');
@@ -753,10 +755,10 @@ void main() {
       when(() => target.exec(['test', '-f', '/tmp/ready'])).thenAnswer(
         (_) async => (0, Uint8List(0)),
       );
-      final strategy =
-          FileExistsWaitStrategy('/tmp/ready')..withStartupTimeout(
-            const Duration(seconds: 5),
-          );
+      final strategy = FileExistsWaitStrategy('/tmp/ready')
+        ..withStartupTimeout(
+          const Duration(seconds: 5),
+        );
       await expectLater(strategy.waitUntilReady(target), completes);
     });
 
@@ -764,17 +766,19 @@ void main() {
       when(() => target.exec(any())).thenAnswer(
         (_) async => (1, Uint8List(0)),
       );
-      final strategy =
-          FileExistsWaitStrategy('/tmp/ready')..withStartupTimeout(
-            const Duration(milliseconds: 50),
-          )..withPollInterval(const Duration(milliseconds: 10));
+      final strategy = FileExistsWaitStrategy('/tmp/ready')
+        ..withStartupTimeout(
+          const Duration(milliseconds: 50),
+        )
+        ..withPollInterval(const Duration(milliseconds: 10));
       await expectLater(
         strategy.waitUntilReady(target),
         throwsA(isA<TimeoutException>()),
       );
     });
 
-    test('TimeoutException message includes filePath and directory listing hint',
+    test(
+        'TimeoutException message includes filePath and directory listing hint',
         () async {
       when(() => target.exec(any())).thenAnswer(
         (_) async => (1, Uint8List(0)),
@@ -898,8 +902,7 @@ void main() {
       // Decode to verify round-trip correctness.
       final header = s.testHeaders['Authorization']!;
       expect(header.startsWith('Basic '), isTrue);
-      final decoded =
-          String.fromCharCodes(base64.decode(header.substring(6)));
+      final decoded = String.fromCharCodes(base64.decode(header.substring(6)));
       expect(decoded, equals('admin:p@ssw0rd!#'));
     });
 
@@ -927,8 +930,7 @@ void main() {
     });
 
     test('forStatusCode adds code to the accepted set', () {
-      final s =
-          HttpWaitStrategy(8080).forStatusCode(201).forStatusCode(204);
+      final s = HttpWaitStrategy(8080).forStatusCode(201).forStatusCode(204);
       expect(s.testStatusCodes, containsAll([200, 201, 204]));
     });
 
@@ -1057,7 +1059,8 @@ void main() {
       );
     });
 
-    test('SocketException is swallowed by default (always transient)', () async {
+    test('SocketException is swallowed by default (always transient)',
+        () async {
       // SocketException is in the default transient set — it must be swallowed
       // and polling must continue until the timeout fires.
       when(() => target.logs()).thenAnswer((_) async {
@@ -1258,8 +1261,7 @@ void main() {
 
     test(
         'throws StateError when containerInfo() throws — caught internally '
-        'and treated as null (no healthcheck)',
-        () async {
+        'and treated as null (no healthcheck)', () async {
       // The implementation catches exceptions from containerInfo() and sets
       // healthStatus to null, which then triggers the "no health check" path.
       when(() => target.containerInfo()).thenAnswer(
@@ -1276,8 +1278,7 @@ void main() {
 
     test(
         'throws StateError when health status is an empty string — isEmpty '
-        'branch distinct from null branch',
-        () async {
+        'branch distinct from null branch', () async {
       // The condition is: `healthStatus == null || healthStatus.isEmpty`
       // The null branch is exercised by containerInfo() returning null.
       // This test specifically exercises the isEmpty branch (healthStatus == '').
@@ -1305,8 +1306,7 @@ void main() {
 
     test(
         'throws StateError when health status is an empty string — error '
-        'message includes target description',
-        () async {
+        'message includes target description', () async {
       // The error message ends with `: $target` — verify it's non-empty.
       when(() => target.containerInfo()).thenAnswer(
         (_) async => const ContainerInspectInfo(
@@ -1470,8 +1470,7 @@ void main() {
       );
     });
 
-    test(
-        'predicateStreamsAnd=true succeeds when message found in both streams',
+    test('predicateStreamsAnd=true succeeds when message found in both streams',
         () async {
       final msg = Uint8List.fromList('OK'.codeUnits);
       when(() => target.logs()).thenAnswer(
@@ -1486,8 +1485,7 @@ void main() {
       expect(elapsed, isA<Duration>());
     });
 
-    test(
-        'predicateStreamsAnd=true times out when message only in stdout',
+    test('predicateStreamsAnd=true times out when message only in stdout',
         () async {
       final msg = Uint8List.fromList('OK'.codeUnits);
       when(() => target.logs()).thenAnswer(
@@ -1604,7 +1602,8 @@ void main() {
       }
     });
 
-    test('succeeds with forStatusCodeMatching — accepts any 2xx code', () async {
+    test('succeeds with forStatusCodeMatching — accepts any 2xx code',
+        () async {
       final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
       final port = server.port;
       server.listen((req) {
@@ -1803,7 +1802,8 @@ void main() {
       final port = server.port;
       server.listen((req) async {
         final body = await utf8.decodeStream(req);
-        final code = body == '{"ping":true}' ? HttpStatus.ok : HttpStatus.badRequest;
+        final code =
+            body == '{"ping":true}' ? HttpStatus.ok : HttpStatus.badRequest;
         req.response.statusCode = code;
         unawaited(req.response.close());
       });

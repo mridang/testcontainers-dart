@@ -61,7 +61,8 @@ void main() {
       expect(c.ports[80], equals(8080));
     });
 
-    test('withBindPorts without host port is equivalent to withExposedPorts', () {
+    test('withBindPorts without host port is equivalent to withExposedPorts',
+        () {
       final c = DockerContainer('nginx:alpine').withBindPorts(8080);
       expect(c.ports[8080], isNull);
     });
@@ -192,7 +193,8 @@ void main() {
     test('withCopyIntoContainer returns same instance for chaining', () {
       final c = DockerContainer('alpine');
       final bytes = Uint8List.fromList([1, 2, 3]);
-      final result = c.withCopyIntoContainer(BytesTransferable(bytes), '/app/file', 0x1A4);
+      final result =
+          c.withCopyIntoContainer(BytesTransferable(bytes), '/app/file', 0x1A4);
       expect(identical(result, c), isTrue);
     });
 
@@ -307,8 +309,7 @@ void main() {
     });
 
     test('volumes getter is unmodifiable', () {
-      final c =
-          DockerContainer('alpine').withVolumeMapping('/h', '/c', 'rw');
+      final c = DockerContainer('alpine').withVolumeMapping('/h', '/c', 'rw');
       expect(
         () => c.volumes['/extra'] = (bind: '/dst', mode: 'ro'),
         throwsUnsupportedError,
@@ -630,7 +631,8 @@ void main() {
       );
     });
 
-    test('empty single-quoted argument is dropped (no empty token emitted)', () {
+    test('empty single-quoted argument is dropped (no empty token emitted)',
+        () {
       // The parser only emits a token when current is non-empty at word
       // boundaries; adjacent empty quotes produce no token.
       expect(
@@ -639,7 +641,8 @@ void main() {
       );
     });
 
-    test('empty double-quoted argument is dropped (no empty token emitted)', () {
+    test('empty double-quoted argument is dropped (no empty token emitted)',
+        () {
       expect(
         DockerContainer.splitCommand('cmd ""'),
         equals(['cmd']),
@@ -753,7 +756,9 @@ void main() {
       expect(c.env['CONFIGURED'], equals('true'));
     });
 
-    test('subclass configure() can be called multiple times (idempotent env set)', () {
+    test(
+        'subclass configure() can be called multiple times (idempotent env set)',
+        () {
       // Calling configure() twice must not create duplicate env entries — it
       // simply overwrites the same key with the same value.
       final c = _ConfiguringContainer('alpine');
@@ -820,7 +825,6 @@ void main() {
         throwsA(isA<ContainerStartException>()),
       );
     });
-
   });
 
   // ---------------------------------------------------------------------------
