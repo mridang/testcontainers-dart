@@ -1461,7 +1461,7 @@ class ContainerNetworkSettings {
   final String? linkLocalIPv6Address;
 
   /// Prefix length of the link-local IPv6 address.
-  final String? linkLocalIPv6PrefixLen;
+  final int? linkLocalIPv6PrefixLen;
 
   /// Published port bindings: container port spec → list of host bindings.
   final Map<String, List<ContainerPortBinding>?>? ports;
@@ -1563,7 +1563,7 @@ class ContainerNetworkSettings {
       sandboxID: json['SandboxID'] as String?,
       hairpinMode: json['HairpinMode'] as bool?,
       linkLocalIPv6Address: json['LinkLocalIPv6Address'] as String?,
-      linkLocalIPv6PrefixLen: json['LinkLocalIPv6PrefixLen'] as String?,
+      linkLocalIPv6PrefixLen: json['LinkLocalIPv6PrefixLen'] as int?,
       ports: ports,
       sandboxKey: json['SandboxKey'] as String?,
       secondaryIPAddresses: parseAddresses(json['SecondaryIPAddresses']),
@@ -1651,12 +1651,11 @@ class ContainerInspectInfo {
   /// Storage driver metadata for the container's layers.
   final ContainerGraphDriver? graphDriver;
 
-  /// Size of the container's writable layer in bytes (may be a string in
-  /// older Docker versions).
-  final String? sizeRw;
+  /// Size of the container's writable layer in bytes.
+  final int? sizeRw;
 
   /// Total size of all image layers in bytes.
-  final String? sizeRootFs;
+  final int? sizeRootFs;
 
   /// Active volume and bind mounts.
   final List<ContainerMount>? mounts;
@@ -1737,8 +1736,8 @@ class ContainerInspectInfo {
       graphDriver: graphDriverData != null
           ? ContainerGraphDriver.fromJson(graphDriverData)
           : null,
-      sizeRw: json['SizeRw']?.toString(),
-      sizeRootFs: json['SizeRootFs']?.toString(),
+      sizeRw: json['SizeRw'] as int?,
+      sizeRootFs: json['SizeRootFs'] as int?,
       mounts: (json['Mounts'] as List<dynamic>?)
           ?.map((e) => ContainerMount.fromJson(e as Map<String, dynamic>))
           .toList(),

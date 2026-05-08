@@ -729,14 +729,14 @@ void main() {
         'SandboxID': 'sandbox123',
         'HairpinMode': false,
         'LinkLocalIPv6Address': 'fe80::1',
-        'LinkLocalIPv6PrefixLen': '64',
+        'LinkLocalIPv6PrefixLen': 64,
         'SandboxKey': '/var/run/docker/netns/abc',
       });
       expect(ns.bridge, equals('docker0'));
       expect(ns.sandboxID, equals('sandbox123'));
       expect(ns.hairpinMode, isFalse);
       expect(ns.linkLocalIPv6Address, equals('fe80::1'));
-      expect(ns.linkLocalIPv6PrefixLen, equals('64'));
+      expect(ns.linkLocalIPv6PrefixLen, equals(64));
       expect(ns.sandboxKey, equals('/var/run/docker/netns/abc'));
     });
 
@@ -883,14 +883,14 @@ void main() {
       expect(info.imageManifestDescriptor, isNull);
     });
 
-    test('parses sizeRw and sizeRootFs as string (via toString)', () {
-      // Docker returns these as numbers; fromJson calls toString() on them.
+    test('parses sizeRw and sizeRootFs as int', () {
+      // Docker returns these as integers per the API spec (int64).
       final info = ContainerInspectInfo.fromJson({
         'SizeRw': 4096,
         'SizeRootFs': 123456789,
       });
-      expect(info.sizeRw, equals('4096'));
-      expect(info.sizeRootFs, equals('123456789'));
+      expect(info.sizeRw, equals(4096));
+      expect(info.sizeRootFs, equals(123456789));
     });
 
     test('parses processLabel', () {
