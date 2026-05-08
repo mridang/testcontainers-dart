@@ -6,9 +6,15 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/exec",
+      "semantic-release-pub",
       {
-        "prepareCmd": "perl -pi -e 's/^version: .*/version: ${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml"
+        "pkgRoot": "./packages/testcontainers_core"
+      }
+    ],
+    [
+      "semantic-release-pub",
+      {
+        "pkgRoot": "./packages/testcontainers_compose"
       }
     ],
     [
