@@ -42,7 +42,7 @@ const String labelLang = 'org.testcontainers.lang';
 /// Hardcoded constant — must be kept in sync with the `version` field in
 /// `packages/testcontainers/pubspec.yaml` on every release. Stamped on
 /// every container, network, and image resource via [labelVersion].
-const String tcVersion = '1.0.5';
+const String tcVersion = '1.0.6';
 
 /// The language binding identifier placed in [labelLang].
 const String labelLangValue = 'dart';
