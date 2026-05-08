@@ -1,0 +1,30 @@
+# Dart / pub
+.dart_tool/
+.packages
+pubspec.lock
+pubspec_overrides.yaml
+build/
+doc/api/
+
+# Melos
+.melos_tool/
+.pub/
+
+# Test output
+.out/
+coverage/
+*.lcov
+*.xml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker image cache (CI only)
+docker_images/

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the ContainerInspectInfo class from the testcontainers library, for the Dart programming language.">
+  <title>ContainerInspectInfo class - testcontainers library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">testcontainers</a></li>
+    <li><a href="../testcontainers">testcontainers.dart</a></li>
+    <li class="self-crumb">ContainerInspectInfo class</li>
+  </ol>
+  <div class="self-name">ContainerInspectInfo</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="testcontainers&#47;testcontainers-library-sidebar.html"
+    data-below-sidebar="testcontainers&#47;ContainerInspectInfo-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">ContainerInspectInfo</span> class 
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>The complete inspect response for a single Docker container.</p>
+<p>This is the top-level model returned by
+<a href="../testcontainers/DockerClient/getContainerInspectInfo.html">DockerClient.getContainerInspectInfo</a> and <code>ComposeContainer.getContainerInfo</code>.
+All fields are optional — Docker's response may omit fields depending on
+the daemon version and the container's state.</p>
+</section>
+
+
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="ContainerInspectInfo" class="callable">
+          <span class="name"><a href="../testcontainers/ContainerInspectInfo/ContainerInspectInfo.html">ContainerInspectInfo</a></span><span class="signature">({<span class="parameter" id="-param-id"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">id</span>, </span><span class="parameter" id="-param-created"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">created</span>, </span><span class="parameter" id="-param-path"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">path</span>, </span><span class="parameter" id="-param-args"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">args</span>, </span><span class="parameter" id="-param-state"><span class="type-annotation"><a href="../testcontainers/ContainerState-class.html">ContainerState</a>?</span> <span class="parameter-name">state</span>, </span><span class="parameter" id="-param-image"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">image</span>, </span><span class="parameter" id="-param-resolvConfPath"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">resolvConfPath</span>, </span><span class="parameter" id="-param-hostnamePath"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">hostnamePath</span>, </span><span class="parameter" id="-param-hostsPath"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">hostsPath</span>, </span><span class="parameter" id="-param-logPath"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">logPath</span>, </span><span class="parameter" id="-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span><span class="parameter" id="-param-restartCount"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">restartCount</span>, </span><span class="parameter" id="-param-driver"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">driver</span>, </span><span class="parameter" id="-param-platform"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">platform</span>, </span><span class="parameter" id="-param-imageManifestDescriptor"><span class="type-annotation"><a href="../testcontainers/ContainerImageManifestDescriptor-class.html">ContainerImageManifestDescriptor</a>?</span> <span class="parameter-name">imageManifestDescriptor</span>, </span><span class="parameter" id="-param-mountLabel"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">mountLabel</span>, </span><span class="parameter" id="-param-processLabel"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">processLabel</span>, </span><span class="parameter" id="-param-appArmorProfile"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">appArmorProfile</span>, </span><span class="parameter" id="-param-execIDs"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">execIDs</span>, </span><span class="parameter" id="-param-hostConfig"><span class="type-annotation"><a href="../testcontainers/ContainerHostConfig-class.html">ContainerHostConfig</a>?</span> <span class="parameter-name">hostConfig</span>, </span><span class="parameter" id="-param-graphDriver"><span class="type-annotation"><a href="../testcontainers/ContainerGraphDriver-class.html">ContainerGraphDriver</a>?</span> <span class="parameter-name">graphDriver</span>, </span><span class="parameter" id="-param-sizeRw"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">sizeRw</span>, </span><span class="parameter" id="-param-sizeRootFs"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">sizeRootFs</span>, </span><span class="parameter" id="-param-mounts"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../testcontainers/ContainerMount-class.html">ContainerMount</a></span>&gt;</span>?</span> <span class="parameter-name">mounts</span>, </span><span class="parameter" id="-param-config"><span class="type-annotation"><a href="../testcontainers/ContainerConfig-class.html">ContainerConfig</a>?</span> <span class="parameter-name">config</span>, </span><span class="parameter" id="-param-networkSettings"><span class="type-annotation"><a href="../testcontainers/ContainerNetworkSettings-class.html">ContainerNetworkSettings</a>?</span> <span class="parameter-name">networkSettings</span></span>})</span>
+        </dt>
+        <dd>
+          Creates a <a href="../testcontainers/ContainerInspectInfo-class.html">ContainerInspectInfo</a> with the given fields.
+            <div class="constructor-modifier features">const</div>
+        </dd>
+        <dt id="ContainerInspectInfo.fromJson" class="callable">
+          <span class="name"><a href="../testcontainers/ContainerInspectInfo/ContainerInspectInfo.fromJson.html">ContainerInspectInfo.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-json"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">json</span></span>)</span>
+        </dt>
+        <dd>
+          Deserialises a <a href="../testcontainers/ContainerInspectInfo-class.html">ContainerInspectInfo</a> from the raw JSON map returned by
+<code>GET /containers/{id}/json</code>.
+            <div class="constructor-modifier features">factory</div>
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="appArmorProfile" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/appArmorProfile.html">appArmorProfile</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  AppArmor profile applied to the container.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="args" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/args.html">args</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  Arguments passed to <a href="../testcontainers/ContainerInspectInfo/path.html">path</a>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="config" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/config.html">config</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerConfig-class.html">ContainerConfig</a>?</span>
+  
+
+</dt>
+<dd>
+  Image-level and runtime configuration.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="created" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/created.html">created</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  RFC 3339 timestamp when the container was created.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="driver" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/driver.html">driver</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Storage driver used for the container's writable layer.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="execIDs" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/execIDs.html">execIDs</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  List of exec IDs currently running inside the container.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="graphDriver" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/graphDriver.html">graphDriver</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerGraphDriver-class.html">ContainerGraphDriver</a>?</span>
+  
+
+</dt>
+<dd>
+  Storage driver metadata for the container's layers.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="hostConfig" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/hostConfig.html">hostConfig</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerHostConfig-class.html">ContainerHostConfig</a>?</span>
+  
+
+</dt>
+<dd>
+  Host-level resource and runtime configuration.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hostnamePath" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/hostnamePath.html">hostnamePath</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Path to the container's hostname file on the host.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hostsPath" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/hostsPath.html">hostsPath</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Path to the container's <code>/etc/hosts</code> file on the host.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="id" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/id.html">id</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Full container ID (64-character hex string).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="image" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/image.html">image</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Image ID (<code>sha256:…</code>) that the container was created from.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="imageManifestDescriptor" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/imageManifestDescriptor.html">imageManifestDescriptor</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerImageManifestDescriptor-class.html">ContainerImageManifestDescriptor</a>?</span>
+  
+
+</dt>
+<dd>
+  OCI image manifest descriptor (present on Docker 25+ for multi-arch
+images).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="logPath" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/logPath.html">logPath</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Path to the container's log file on the host.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="mountLabel" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/mountLabel.html">mountLabel</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  SELinux label applied to the container's mounts.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="mounts" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/mounts.html">mounts</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../testcontainers/ContainerMount-class.html">ContainerMount</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  Active volume and bind mounts.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="name" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/name.html">name</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Container name (prefixed with <code>/</code>, e.g. <code>'/myapp'</code>).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="networkSettings" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/networkSettings.html">networkSettings</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerNetworkSettings-class.html">ContainerNetworkSettings</a>?</span>
+  
+
+</dt>
+<dd>
+  Network state and per-network connection details.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="path" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/path.html">path</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Entrypoint or command path.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="platform" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/platform.html">platform</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Platform (OS) the container is running on.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="processLabel" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/processLabel.html">processLabel</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  SELinux label applied to the container process.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="resolvConfPath" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/resolvConfPath.html">resolvConfPath</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Path to the <code>resolv.conf</code> file on the host.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="restartCount" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/restartCount.html">restartCount</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a>?</span>
+  
+
+</dt>
+<dd>
+  Number of times the container has been restarted.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="sizeRootFs" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/sizeRootFs.html">sizeRootFs</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Total size of all image layers in bytes.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="sizeRw" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/sizeRw.html">sizeRw</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  Size of the container's writable layer in bytes (may be a string in
+older Docker versions).
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="state" class="property">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/state.html">state</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/ContainerState-class.html">ContainerState</a>?</span>
+  
+
+</dt>
+<dd>
+  Current lifecycle and health state.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="getNetworkSettings" class="callable">
+  <span class="name"><a href="../testcontainers/ContainerInspectInfo/getNetworkSettings.html">getNetworkSettings</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/ContainerNetworkSettings-class.html">ContainerNetworkSettings</a>?</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the network settings object, or <code>null</code> if not available.
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">testcontainers</a></li>
+    <li><a href="../testcontainers">testcontainers</a></li>
+    <li class="self-crumb">ContainerInspectInfo class</li>
+</ol>
+
+    <h5>testcontainers library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    testcontainers
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

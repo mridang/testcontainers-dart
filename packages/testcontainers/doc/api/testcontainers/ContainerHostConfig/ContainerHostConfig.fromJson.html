@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the ContainerHostConfig.fromJson constructor from Class ContainerHostConfig from the testcontainers library, for the Dart programming language.">
+  <title>ContainerHostConfig.fromJson constructor - ContainerHostConfig - testcontainers library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">testcontainers</a></li>
+    <li><a href="../../testcontainers">testcontainers.dart</a></li>
+    <li><a href="../../testcontainers/ContainerHostConfig-class.html">ContainerHostConfig</a></li>
+    <li class="self-crumb">ContainerHostConfig.fromJson factory constructor</li>
+  </ol>
+  <div class="self-name">ContainerHostConfig.fromJson</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="testcontainers&#47;ContainerHostConfig-class-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-constructor">ContainerHostConfig.fromJson</span> constructor 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+      <span class="name ">ContainerHostConfig.fromJson</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="fromJson-param-json"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">json</span></span></li>
+</ol>)
+    </section>
+    
+<section class="desc markdown">
+  <p>Deserialises a <a href="../../testcontainers/ContainerHostConfig-class.html">ContainerHostConfig</a> from Docker's JSON representation.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">factory ContainerHostConfig.fromJson(Map&lt;String, dynamic&gt; json) {
+  Map&lt;String, List&lt;ContainerPortBinding&gt;?&gt;? portBindings;
+  final raw = json[&#39;PortBindings&#39;] as Map&lt;String, dynamic&gt;?;
+  if (raw != null) {
+    portBindings = {};
+    for (final entry in raw.entries) {
+      final bindings = entry.value as List&lt;dynamic&gt;?;
+      portBindings[entry.key] = bindings
+          ?.map(
+            (b) =&gt; ContainerPortBinding.fromJson(b as Map&lt;String, dynamic&gt;),
+          )
+          .toList();
+    }
+  }
+
+  List&lt;T&gt;? parseList&lt;T&gt;(
+    String key,
+    T Function(Map&lt;String, dynamic&gt;) fromJson,
+  ) {
+    final list = json[key] as List&lt;dynamic&gt;?;
+    return list
+        ?.map((e) =&gt; fromJson(e as Map&lt;String, dynamic&gt;))
+        .toList();
+  }
+
+  return ContainerHostConfig(
+    cpuShares: json[&#39;CpuShares&#39;] as int?,
+    memory: json[&#39;Memory&#39;] as int?,
+    cgroupParent: json[&#39;CgroupParent&#39;] as String?,
+    blkioWeight: json[&#39;BlkioWeight&#39;] as int?,
+    blkioWeightDevice: parseList(
+      &#39;BlkioWeightDevice&#39;,
+      ContainerBlkioWeightDevice.fromJson,
+    ),
+    blkioDeviceReadBps: parseList(
+      &#39;BlkioDeviceReadBps&#39;,
+      ContainerBlkioDeviceRate.fromJson,
+    ),
+    blkioDeviceWriteBps: parseList(
+      &#39;BlkioDeviceWriteBps&#39;,
+      ContainerBlkioDeviceRate.fromJson,
+    ),
+    blkioDeviceReadIOps: parseList(
+      &#39;BlkioDeviceReadIOps&#39;,
+      ContainerBlkioDeviceRate.fromJson,
+    ),
+    blkioDeviceWriteIOps: parseList(
+      &#39;BlkioDeviceWriteIOps&#39;,
+      ContainerBlkioDeviceRate.fromJson,
+    ),
+    cpuPeriod: json[&#39;CpuPeriod&#39;] as int?,
+    cpuQuota: json[&#39;CpuQuota&#39;] as int?,
+    cpuRealtimePeriod: json[&#39;CpuRealtimePeriod&#39;] as int?,
+    cpuRealtimeRuntime: json[&#39;CpuRealtimeRuntime&#39;] as int?,
+    cpusetCpus: json[&#39;CpusetCpus&#39;] as String?,
+    cpusetMems: json[&#39;CpusetMems&#39;] as String?,
+    devices: parseList(&#39;Devices&#39;, ContainerDeviceMapping.fromJson),
+    deviceCgroupRules: (json[&#39;DeviceCgroupRules&#39;] as List&lt;dynamic&gt;?)
+        ?.cast&lt;String&gt;(),
+    deviceRequests: parseList(
+      &#39;DeviceRequests&#39;,
+      ContainerDeviceRequest.fromJson,
+    ),
+    kernelMemoryTCP: json[&#39;KernelMemoryTCP&#39;] as int?,
+    memoryReservation: json[&#39;MemoryReservation&#39;] as int?,
+    memorySwap: json[&#39;MemorySwap&#39;] as int?,
+    memorySwappiness: json[&#39;MemorySwappiness&#39;] as int?,
+    nanoCpus: json[&#39;NanoCpus&#39;] as int?,
+    oomKillDisable: json[&#39;OomKillDisable&#39;] as bool?,
+    init: json[&#39;Init&#39;] as bool?,
+    pidsLimit: json[&#39;PidsLimit&#39;] as int?,
+    ulimits: parseList(&#39;Ulimits&#39;, ContainerUlimit.fromJson),
+    cpuCount: json[&#39;CpuCount&#39;] as int?,
+    cpuPercent: json[&#39;CpuPercent&#39;] as int?,
+    ioMaximumIOps: json[&#39;IOMaximumIOps&#39;] as int?,
+    ioMaximumBandwidth: json[&#39;IOMaximumBandwidth&#39;] as int?,
+    binds: (json[&#39;Binds&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    containerIDFile: json[&#39;ContainerIDFile&#39;] as String?,
+    logConfig: json[&#39;LogConfig&#39;] != null
+        ? ContainerLogConfig.fromJson(
+            json[&#39;LogConfig&#39;] as Map&lt;String, dynamic&gt;,
+          )
+        : null,
+    networkMode: json[&#39;NetworkMode&#39;] as String?,
+    portBindings: portBindings,
+    restartPolicy: json[&#39;RestartPolicy&#39;] != null
+        ? ContainerRestartPolicy.fromJson(
+            json[&#39;RestartPolicy&#39;] as Map&lt;String, dynamic&gt;,
+          )
+        : null,
+    autoRemove: json[&#39;AutoRemove&#39;] as bool?,
+    volumeDriver: json[&#39;VolumeDriver&#39;] as String?,
+    volumesFrom: (json[&#39;VolumesFrom&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    mounts: parseList(&#39;Mounts&#39;, ContainerMountPoint.fromJson),
+    consoleSize: (json[&#39;ConsoleSize&#39;] as List&lt;dynamic&gt;?)?.cast&lt;int&gt;(),
+    annotations: (json[&#39;Annotations&#39;] as Map&lt;String, dynamic&gt;?)
+        ?.cast&lt;String, String&gt;(),
+    capAdd: (json[&#39;CapAdd&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    capDrop: (json[&#39;CapDrop&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    cgroupnsMode: json[&#39;CgroupnsMode&#39;] as String?,
+    dns: (json[&#39;Dns&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    dnsOptions: (json[&#39;DnsOptions&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    dnsSearch: (json[&#39;DnsSearch&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    extraHosts: (json[&#39;ExtraHosts&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    groupAdd: (json[&#39;GroupAdd&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    ipcMode: json[&#39;IpcMode&#39;] as String?,
+    cgroup: json[&#39;Cgroup&#39;] as String?,
+    links: (json[&#39;Links&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    oomScoreAdj: json[&#39;OomScoreAdj&#39;] as int?,
+    pidMode: json[&#39;PidMode&#39;] as String?,
+    privileged: json[&#39;Privileged&#39;] as bool?,
+    publishAllPorts: json[&#39;PublishAllPorts&#39;] as bool?,
+    readonlyRootfs: json[&#39;ReadonlyRootfs&#39;] as bool?,
+    securityOpt: (json[&#39;SecurityOpt&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    storageOpt: (json[&#39;StorageOpt&#39;] as Map&lt;String, dynamic&gt;?)
+        ?.cast&lt;String, String&gt;(),
+    tmpfs: (json[&#39;Tmpfs&#39;] as Map&lt;String, dynamic&gt;?)?.cast&lt;String, String&gt;(),
+    utsMode: json[&#39;UTSMode&#39;] as String?,
+    usernsMode: json[&#39;UsernsMode&#39;] as String?,
+    shmSize: json[&#39;ShmSize&#39;] as int?,
+    sysctls: (json[&#39;Sysctls&#39;] as Map&lt;String, dynamic&gt;?)
+        ?.cast&lt;String, String&gt;(),
+    runtime: json[&#39;Runtime&#39;] as String?,
+    isolation: json[&#39;Isolation&#39;] as String?,
+    maskedPaths: (json[&#39;MaskedPaths&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+    readonlyPaths: (json[&#39;ReadonlyPaths&#39;] as List&lt;dynamic&gt;?)?.cast&lt;String&gt;(),
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">testcontainers</a></li>
+    <li><a href="../../testcontainers">testcontainers</a></li>
+    <li><a href="../../testcontainers/ContainerHostConfig-class.html">ContainerHostConfig</a></li>
+    <li class="self-crumb">ContainerHostConfig.fromJson factory constructor</li>
+</ol>
+
+    <h5>ContainerHostConfig class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    testcontainers
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

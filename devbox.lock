@@ -1,0 +1,165 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "dart@3.7.2": {
+      "last_modified": "2025-04-17T05:47:26Z",
+      "resolved": "github:NixOS/nixpkgs/ebe4301cbd8f81c4f8d3244b3632338bbeb6d49c#dart",
+      "source": "devbox-search",
+      "version": "3.7.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5q6wlb2m1f6qb0lpw299cv48lnj5w2fv-dart-3.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5q6wlb2m1f6qb0lpw299cv48lnj5w2fv-dart-3.7.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/617swkc70f9rkarxliq948bsn5jbv7pi-dart-3.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/617swkc70f9rkarxliq948bsn5jbv7pi-dart-3.7.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rrw9jr01zp2sls33a34iql1f5gsryxac-dart-3.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rrw9jr01zp2sls33a34iql1f5gsryxac-dart-3.7.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/fgi798m2j05ramlf8m2gmp5j3y7661lc-dart-3.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/fgi798m2j05ramlf8m2gmp5j3y7661lc-dart-3.7.2"
+        }
+      }
+    },
+    "docker@latest": {
+      "last_modified": "2026-04-28T17:03:49Z",
+      "resolved": "github:NixOS/nixpkgs/e75f25705c2934955ee5075e62530d74aca973c6#docker",
+      "source": "devbox-search",
+      "version": "29.4.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x1qs65ygr7j3s8ahbs8p6n6vnpyjhsvc-docker-29.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/x1qs65ygr7j3s8ahbs8p6n6vnpyjhsvc-docker-29.4.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6g2dn1c3yw82bqigrbc63163m63a5ga2-docker-29.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6g2dn1c3yw82bqigrbc63163m63a5ga2-docker-29.4.1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dz6ryj95h946c01x6r2irgffa91n7h6r-docker-29.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dz6ryj95h946c01x6r2irgffa91n7h6r-docker-29.4.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jl4707yg00y0sv577av8kcf8hqjy60sm-docker-29.4.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jl4707yg00y0sv577av8kcf8hqjy60sm-docker-29.4.1"
+        }
+      }
+    },
+    "melos@6.3.2": {
+      "last_modified": "2025-08-04T20:54:38Z",
+      "resolved": "github:NixOS/nixpkgs/cab778239e705082fe97bb4990e0d24c50924c04#melos",
+      "source": "devbox-search",
+      "version": "6.3.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/d13jc0ax4l2iqps8pyf2bd4h56dngfd6-melos-6.3.2",
+              "default": true
+            },
+            {
+              "name": "pubcache",
+              "path": "/nix/store/vx85sg623bpfdsa329nycygk1pnsxk8j-melos-6.3.2-pubcache"
+            }
+          ],
+          "store_path": "/nix/store/d13jc0ax4l2iqps8pyf2bd4h56dngfd6-melos-6.3.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/0x7n0izy3p1svgy454wggiafa863rba3-melos-6.3.2",
+              "default": true
+            },
+            {
+              "name": "pubcache",
+              "path": "/nix/store/fapimv2y97y38cl6kqlwc0z3rwksbba5-melos-6.3.2-pubcache"
+            }
+          ],
+          "store_path": "/nix/store/0x7n0izy3p1svgy454wggiafa863rba3-melos-6.3.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/56m2jdh0s5gf3xsghswng6hq5qv8br30-melos-6.3.2",
+              "default": true
+            },
+            {
+              "name": "pubcache",
+              "path": "/nix/store/7sbv0584lgzi5wyma8z29fivzjbpw83i-melos-6.3.2-pubcache"
+            }
+          ],
+          "store_path": "/nix/store/56m2jdh0s5gf3xsghswng6hq5qv8br30-melos-6.3.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jkzqa9kc1c7478ns1japr40ywj18y1d2-melos-6.3.2",
+              "default": true
+            },
+            {
+              "name": "pubcache",
+              "path": "/nix/store/ljxfk1n0fpc4w4n97qhgppg9dvc9s22n-melos-6.3.2-pubcache"
+            }
+          ],
+          "store_path": "/nix/store/jkzqa9kc1c7478ns1japr40ywj18y1d2-melos-6.3.2"
+        }
+      }
+    }
+  }
+}

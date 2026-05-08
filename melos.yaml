@@ -1,0 +1,46 @@
+name: testcontainers_dart
+repository: https://github.com/mridang/testcontainers-dart
+
+packages:
+  - packages/*
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    exec: dart analyze --fatal-infos
+    description: Run dart analyze in all packages.
+  test:
+    exec: |
+      mkdir -p .out
+      dart test \
+        --coverage=.out/coverage \
+        --reporter expanded \
+        --file-reporter "json:.out/test-results.json"
+      TEST_EXIT=$?
+      tojunit < .out/test-results.json > .out/junit.xml || true
+      format_coverage \
+        --lcov \
+        --in=.out/coverage \
+        --out=.out/lcov.info \
+        --packages=.dart_tool/package_config.json \
+        --report-on=lib || true
+      exit $TEST_EXIT
+    description: Run all tests and emit .out/junit.xml + .out/lcov.info per package.
+  test:unit:
+    exec: dart test --tags unit
+    description: Run unit tests only (no Docker required).
+  test:integration:
+    exec: dart test --tags integration
+    description: Run integration tests (requires Docker daemon).
+  format:
+    exec: dart format --set-exit-if-changed .
+    description: Check formatting.
+  format:fix:
+    exec: dart format .
+    description: Apply formatting.
+  doc:
+    exec: dart doc 2>&1
+    description: Generate API documentation.

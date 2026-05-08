@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the DockerContainer class from the testcontainers library, for the Dart programming language.">
+  <title>DockerContainer class - testcontainers library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">testcontainers</a></li>
+    <li><a href="../testcontainers">testcontainers.dart</a></li>
+    <li class="self-crumb">DockerContainer class</li>
+  </ol>
+  <div class="self-name">DockerContainer</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="testcontainers&#47;testcontainers-library-sidebar.html"
+    data-below-sidebar="testcontainers&#47;DockerContainer-class-sidebar.html">
+    <div>
+<h1><span class="kind-class">DockerContainer</span> class 
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>A Docker container managed by testcontainers-dart.</p>
+<p>Instantiate with an image name and chain builder methods to configure it,
+then call <a href="../testcontainers/DockerContainer/start.html">start</a> to create and start the container. Use <a href="../testcontainers/DockerContainer/use.html">use</a> for an
+automatic start + stop with a try/finally guarantee.</p>
+<p>Example:</p>
+<pre class="language-dart"><code class="language-dart">await DockerContainer.use(
+  DockerContainer('redis:7')
+    .withExposedPorts([6379])
+    .waitingFor(PortWaitStrategy(6379)),
+  (container) async {
+    final port = await container.getExposedPort(6379);
+    final client = RedisClient('localhost', port);
+    // ... run tests
+  },
+);
+</code></pre>
+</section>
+
+
+    <section>
+      <dl class="dl-horizontal">
+        
+
+        
+  <dt>Implemented types</dt>
+  <dd>
+    <ul class="comma-separated clazz-relationships">
+        <li><a href="../testcontainers/WaitStrategyTarget-class.html">WaitStrategyTarget</a></li>
+    </ul>
+  </dd>
+        
+
+
+        
+        
+
+
+      </dl>
+    </section>
+
+    
+  <section class="summary offset-anchor" id="constructors">
+    <h2>Constructors</h2>
+    <dl class="constructor-summary-list">
+        <dt id="DockerContainer" class="callable">
+          <span class="name"><a href="../testcontainers/DockerContainer/DockerContainer.html">DockerContainer</a></span><span class="signature">(<span class="parameter" id="-param-image"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">image</span>, {</span><span class="parameter" id="-param-dockerClient"><span class="type-annotation"><a href="../testcontainers/DockerClient-class.html">DockerClient</a>?</span> <span class="parameter-name">dockerClient</span></span>})</span>
+        </dt>
+        <dd>
+          Creates a <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a> for <code>image</code>.
+        </dd>
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-properties">
+    <h2>Properties</h2>
+    <dl class="properties">
+        <dt id="command" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/command.html">command</a></span>
+  <span class="signature">&#8594; dynamic</span>
+  
+
+</dt>
+<dd>
+  The command override, or <code>null</code> when the image's default is used.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="env" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/env.html">env</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Environment variables injected into the container.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  The hash code for this object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="image" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/image.html">image</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The Docker image name (including optional tag) used to create the
+container.
+  <div class="features"><span class="feature">getter/setter pair</span></div>
+
+</dd>
+
+        <dt id="kwargs" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/kwargs.html">kwargs</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Extra Docker <code>HostConfig</code> fields passed to <a href="../testcontainers/DockerClient/createContainer.html">DockerClient.createContainer</a>.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="name" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/name.html">name</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span>
+  
+
+</dt>
+<dd>
+  The container name, or <code>null</code> when none was set.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="network" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/network.html">network</a></span>
+  <span class="signature">&#8594; <a href="../testcontainers/Network-class.html">Network</a>?</span>
+  
+
+</dt>
+<dd>
+  The <a href="../testcontainers/Network-class.html">Network</a> the container will be attached to, or <code>null</code>.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="networkAliases" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/networkAliases.html">networkAliases</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span>
+  
+
+</dt>
+<dd>
+  DNS aliases on <a href="../testcontainers/DockerContainer/network.html">network</a>, or <code>null</code>.
+  <div class="features"><span class="feature">no setter</span></div>
+
+</dd>
+
+        <dt id="ports" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/ports.html">ports</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a>?</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Port map: container port → optional host port.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Type-class.html">Type</a></span>
+  
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object.
+  <div class="features"><span class="feature">no setter</span><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="status" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/status.html">status</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>
+  
+
+</dt>
+<dd>
+  The most recently refreshed container lifecycle status string.
+  <div class="features"><span class="feature">no setter</span><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="tmpfs" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/tmpfs.html">tmpfs</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Tmpfs mounts: container path → options string.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+        <dt id="volumes" class="property">
+  <span class="name"><a href="../testcontainers/DockerContainer/volumes.html">volumes</a></span>
+  <span class="signature">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+  
+
+</dt>
+<dd>
+  Volume bind mounts: host path → <code>{bind: containerPath, mode: 'ro'|'rw'}</code>.
+  <div class="features"><span class="feature">final</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+
+    
+  <section
+      class="summary offset-anchor"
+      id="instance-methods">
+    <h2>Methods</h2>
+    <dl class="callables">
+        <dt id="configure" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/configure.html">configure</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; void</span>
+  </span>
+  
+
+</dt>
+<dd>
+  Extension hook called by <a href="../testcontainers/DockerContainer/start.html">start</a> just before the container is created.
+  
+
+</dd>
+
+        <dt id="copyFromContainer" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/copyFromContainer.html">copyFromContainer</a></span><span class="signature">(<wbr><span class="parameter" id="copyFromContainer-param-sourceInContainer"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">sourceInContainer</span>, </span><span class="parameter" id="copyFromContainer-param-destinationOnHost"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">destinationOnHost</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Downloads <code>sourceInContainer</code> from the container and writes it to
+<code>destinationOnHost</code> as a raw tar file.
+  
+
+</dd>
+
+        <dt id="copyIntoContainer" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/copyIntoContainer.html">copyIntoContainer</a></span><span class="signature">(<wbr><span class="parameter" id="copyIntoContainer-param-transferable"><span class="type-annotation"><a href="../testcontainers/Transferable-class.html">Transferable</a></span> <span class="parameter-name">transferable</span>, </span><span class="parameter" id="copyIntoContainer-param-destination"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">destination</span>, [</span><span class="parameter" id="copyIntoContainer-param-mode"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">mode</span> = <span class="default-value">0x1A4</span></span>])
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Copies <code>transferable</code> into the running container immediately.
+  
+
+</dd>
+
+        <dt id="exec" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/exec.html">exec</a></span><span class="signature">(<wbr><span class="parameter" id="exec-param-command"><span class="type-annotation">dynamic</span> <span class="parameter-name">command</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">(<span class="field"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>, </span><span class="field"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-typed_data/Uint8List-class.html">Uint8List</a></span></span>)</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Runs <code>command</code> inside the running container and returns its result.
+  
+
+</dd>
+
+        <dt id="getContainerHostIp" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getContainerHostIp.html">getContainerHostIp</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the host IP address through which this container is reachable.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="getContainerInfo" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getContainerInfo.html">getContainerInfo</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../testcontainers/ContainerInspectInfo-class.html">ContainerInspectInfo</a>?</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns detailed inspect information for this container.
+  
+
+</dd>
+
+        <dt id="getDockerClient" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getDockerClient.html">getDockerClient</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerClient-class.html">DockerClient</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the underlying <a href="../testcontainers/DockerClient-class.html">DockerClient</a> instance.
+  
+
+</dd>
+
+        <dt id="getExposedPort" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getExposedPort.html">getExposedPort</a></span><span class="signature">(<wbr><span class="parameter" id="getExposedPort-param-port"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">port</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the host port mapped to container <code>port</code>.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="getLogs" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getLogs.html">getLogs</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">(<span class="field"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-typed_data/Uint8List-class.html">Uint8List</a></span>, </span><span class="field"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-typed_data/Uint8List-class.html">Uint8List</a></span></span>)</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns the container's current log output as <code>(stdout, stderr)</code>.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="getWrappedContainer" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/getWrappedContainer.html">getWrappedContainer</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Object-class.html">Object</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Returns <code>this</code> (the <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a> instance itself).
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="maybeEmulateAmd64" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/maybeEmulateAmd64.html">maybeEmulateAmd64</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Conditionally adds <code>platform: 'linux/amd64'</code> emulation when running on
+an ARM64 host (e.g. Apple Silicon).
+  
+
+</dd>
+
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a nonexistent method or property is accessed.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="reload" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/reload.html">reload</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Refreshes the cached container status from the Docker daemon.
+  <div class="features"><span class="feature">override</span></div>
+
+</dd>
+
+        <dt id="start" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/start.html">start</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Creates and starts the container, then runs the wait strategy.
+  
+
+</dd>
+
+        <dt id="stop" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/stop.html">stop</a></span><span class="signature">(<wbr>{<span class="parameter" id="stop-param-force"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">force</span> = <span class="default-value">true</span>, </span><span class="parameter" id="stop-param-deleteVolume"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">deleteVolume</span> = <span class="default-value">true</span></span>})
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">void</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Removes the container.
+  
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+        <dt id="wait" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/wait.html">wait</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Blocks until the container stops and returns its exit code.
+  
+
+</dd>
+
+        <dt id="waitingFor" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/waitingFor.html">waitingFor</a></span><span class="signature">(<wbr><span class="parameter" id="waitingFor-param-strategy"><span class="type-annotation"><a href="../testcontainers/WaitStrategy-class.html">WaitStrategy</a></span> <span class="parameter-name">strategy</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Attaches a <a href="../testcontainers/WaitStrategy-class.html">WaitStrategy</a> that <a href="../testcontainers/DockerContainer/start.html">start</a> will invoke after the container
+is running.
+  
+
+</dd>
+
+        <dt id="withBindPorts" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withBindPorts.html">withBindPorts</a></span><span class="signature">(<wbr><span class="parameter" id="withBindPorts-param-containerPort"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">containerPort</span>, [</span><span class="parameter" id="withBindPorts-param-hostPort"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a>?</span> <span class="parameter-name">hostPort</span></span>])
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Maps <code>containerPort</code> to an optional fixed <code>hostPort</code>.
+  
+
+</dd>
+
+        <dt id="withCommand" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withCommand.html">withCommand</a></span><span class="signature">(<wbr><span class="parameter" id="withCommand-param-command"><span class="type-annotation">dynamic</span> <span class="parameter-name">command</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Overrides the default command run by the container.
+  
+
+</dd>
+
+        <dt id="withCopyIntoContainer" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withCopyIntoContainer.html">withCopyIntoContainer</a></span><span class="signature">(<wbr><span class="parameter" id="withCopyIntoContainer-param-transferable"><span class="type-annotation"><a href="../testcontainers/Transferable-class.html">Transferable</a></span> <span class="parameter-name">transferable</span>, </span><span class="parameter" id="withCopyIntoContainer-param-destination"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">destination</span>, </span><span class="parameter" id="withCopyIntoContainer-param-mode"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span> <span class="parameter-name">mode</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Schedules <code>transferable</code> to be copied into the container at <code>destination</code>
+with Unix permission <code>mode</code> when <a href="../testcontainers/DockerContainer/start.html">start</a> is called.
+  
+
+</dd>
+
+        <dt id="withEnv" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withEnv.html">withEnv</a></span><span class="signature">(<wbr><span class="parameter" id="withEnv-param-key"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">key</span>, </span><span class="parameter" id="withEnv-param-value"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">value</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Sets a single environment variable <code>key</code> to <code>value</code>.
+  
+
+</dd>
+
+        <dt id="withEnvFile" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withEnvFile.html">withEnvFile</a></span><span class="signature">(<wbr><span class="parameter" id="withEnvFile-param-envFile"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">envFile</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Reads environment variables from a <code>.env</code>-style file and merges them
+into <a href="../testcontainers/DockerContainer/env.html">env</a>.
+  
+
+</dd>
+
+        <dt id="withEnvs" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withEnvs.html">withEnvs</a></span><span class="signature">(<wbr><span class="parameter" id="withEnvs-param-variables"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">variables</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Merges <code>variables</code> into the container's environment map.
+  
+
+</dd>
+
+        <dt id="withExposedPorts" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withExposedPorts.html">withExposedPorts</a></span><span class="signature">(<wbr><span class="parameter" id="withExposedPorts-param-exposedPorts"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">exposedPorts</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Exposes each port in <code>exposedPorts</code> with an ephemeral host port.
+  
+
+</dd>
+
+        <dt id="withKwargs" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withKwargs.html">withKwargs</a></span><span class="signature">(<wbr><span class="parameter" id="withKwargs-param-kwargs"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">kwargs</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Sets extra <code>HostConfig</code> fields passed verbatim to the Docker API.
+  
+
+</dd>
+
+        <dt id="withName" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withName.html">withName</a></span><span class="signature">(<wbr><span class="parameter" id="withName-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">name</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Assigns a fixed name to the container.
+  
+
+</dd>
+
+        <dt id="withNetwork" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withNetwork.html">withNetwork</a></span><span class="signature">(<wbr><span class="parameter" id="withNetwork-param-network"><span class="type-annotation"><a href="../testcontainers/Network-class.html">Network</a></span> <span class="parameter-name">network</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Attaches the container to <code>network</code>.
+  
+
+</dd>
+
+        <dt id="withNetworkAliases" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withNetworkAliases.html">withNetworkAliases</a></span><span class="signature">(<wbr><span class="parameter" id="withNetworkAliases-param-aliases"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">aliases</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Sets DNS aliases for the container on its <a href="../testcontainers/DockerContainer/network.html">network</a>.
+  
+
+</dd>
+
+        <dt id="withTmpfsMount" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withTmpfsMount.html">withTmpfsMount</a></span><span class="signature">(<wbr><span class="parameter" id="withTmpfsMount-param-containerPath"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">containerPath</span>, {</span><span class="parameter" id="withTmpfsMount-param-size"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">size</span></span>})
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Adds a tmpfs mount at <code>containerPath</code>.
+  
+
+</dd>
+
+        <dt id="withVolumeMapping" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/withVolumeMapping.html">withVolumeMapping</a></span><span class="signature">(<wbr><span class="parameter" id="withVolumeMapping-param-host"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">host</span>, </span><span class="parameter" id="withVolumeMapping-param-container"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">container</span>, </span><span class="parameter" id="withVolumeMapping-param-mode"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">mode</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Adds a volume bind mount from <code>host</code> to <code>container</code> with <code>mode</code>.
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+  <section
+      class="summary offset-anchor inherited"
+      id="operators">
+    <h2>Operators</h2>
+    <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator.
+  <div class="features"><span class="feature">inherited</span></div>
+
+</dd>
+
+    </dl>
+  </section>
+    
+    
+  <section class="summary offset-anchor" id="static-methods">
+    <h2>Static Methods</h2>
+    <dl class="callables">
+        <dt id="use" class="callable">
+  <span class="name"><a href="../testcontainers/DockerContainer/use.html">use</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="use-param-container"><span class="type-annotation"><a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span> <span class="parameter-name">container</span>, </span><span class="parameter" id="use-param-fn"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">fn</span>(<span class="parameter" id="param-"><span class="type-annotation"><a href="../testcontainers/DockerContainer-class.html">DockerContainer</a></span></span>)</span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Starts <code>container</code>, runs <code>fn</code> with it, and stops it afterwards.
+  
+
+</dd>
+
+    </dl>
+  </section>
+    
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">testcontainers</a></li>
+    <li><a href="../testcontainers">testcontainers</a></li>
+    <li class="self-crumb">DockerContainer class</li>
+</ol>
+
+    <h5>testcontainers library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    testcontainers
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

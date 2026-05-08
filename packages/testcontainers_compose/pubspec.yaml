@@ -1,0 +1,27 @@
+name: testcontainers_compose
+description: >-
+  Docker Compose support for the testcontainers Dart library
+version: 0.1.0
+homepage: https://github.com/mridang/testcontainers-dart
+repository: https://github.com/mridang/testcontainers-dart
+issue_tracker: https://github.com/mridang/testcontainers-dart/issues
+documentation: https://github.com/mridang/testcontainers-dart
+funding:
+  - https://github.com/sponsors/mridang
+topics:
+  - testing
+  - docker
+  - compose
+  - test-automation
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  http: ^1.2.0
+  testcontainers: ^0.1.0
+
+dev_dependencies:
+  lints: ^3.0.0
+  mocktail: ^1.0.0
+  test: ^1.25.0

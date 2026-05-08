@@ -1,0 +1,22 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  errors:
+    missing_required_param: error
+    missing_return: error
+
+linter:
+  rules:
+    - always_declare_return_types
+    - annotate_overrides
+    - avoid_print
+    - avoid_redundant_argument_values
+    - curly_braces_in_flow_control_structures
+    - prefer_const_constructors
+    - prefer_single_quotes
+    - require_trailing_commas
+    - sort_pub_dependencies
+    - unawaited_futures

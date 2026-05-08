@@ -1,0 +1,52 @@
+name: Format Code (dart format)
+
+on: push
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  code-formatting:
+    runs-on: ubuntu-latest
+    env:
+      PUB_CACHE: ${{ github.workspace }}/.pub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PUB_CACHE }}
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Install Dependencies
+        run: |
+          dart pub global activate melos
+          echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
+          "$PUB_CACHE/bin/melos" bootstrap
+
+      - name: Run dart format
+        run: melos run format:fix
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Apply dart format
+          commit_options: '--no-verify'
+          repository: .
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: GitHub Actions <actions@github.com>

@@ -1,0 +1,79 @@
+name: Run Tests (dart test)
+
+on: push
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  app-testing:
+    runs-on: ubuntu-latest
+    env:
+      PUB_CACHE: ${{ github.workspace }}/.pub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: ./docker_images
+          key: ${{ runner.os }}-docker-${{ hashFiles('**/compose.yaml', '**/docker-compose.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-
+
+      - name: Docker pull
+        run: |
+          IMAGES_DIR="./docker_images"
+          COMBINED_IMAGES_TAR="$IMAGES_DIR/combined_images.tar"
+          DOCKER_COMPOSE_FILE="packages/testcontainers_compose/test/compose_fixtures/port_single/compose.yaml"
+
+          if [ -f "$DOCKER_COMPOSE_FILE" ]; then
+            if [ -f "$COMBINED_IMAGES_TAR" ]; then
+              docker image load -i "$COMBINED_IMAGES_TAR"
+            else
+              mkdir -p "$IMAGES_DIR"
+              IMAGES=$(docker compose -f "$DOCKER_COMPOSE_FILE" config --images)
+              docker pull alpine:latest
+              docker pull nginx:alpine-slim
+              docker image save alpine:latest nginx:alpine-slim --output="$COMBINED_IMAGES_TAR"
+            fi
+          else
+            echo "No docker-compose file found. Exiting."
+          fi
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PUB_CACHE }}
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Install Dependencies
+        run: |
+          dart pub global activate melos
+          dart pub global activate junitreport
+          dart pub global activate coverage
+          echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
+          "$PUB_CACHE/bin/melos" bootstrap
+
+      - name: Run dart test
+        run: melos run test
+
+      - name: Generate coverage report
+        if: always()
+        uses: mridang/action-test-reporter@v3
+        with:
+          results-path: 'packages/**/.out/junit.xml'
+          coverage-path: 'packages/**/.out/lcov.info'
