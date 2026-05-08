@@ -9,11 +9,14 @@
 /// nested sub-objects of the inspect response.
 library;
 
+import 'package:meta/meta.dart';
+
 /// A single health-check execution record.
 ///
 /// Docker stores the most recent [ContainerHealth.log] entries (up to the
 /// configured `--health-retries` limit). Each entry describes one run of the
 /// health-check command.
+@immutable
 class ContainerLog {
   /// RFC 3339 timestamp when the health check started.
   final String? start;
@@ -44,6 +47,7 @@ class ContainerLog {
 /// The aggregated health status of a container.
 ///
 /// Populated only when the container has a `HEALTHCHECK` instruction.
+@immutable
 class ContainerHealth {
   /// Overall health status string: `'healthy'`, `'unhealthy'`, or
   /// `'starting'`.
@@ -72,6 +76,7 @@ class ContainerHealth {
 /// The full lifecycle state of a container.
 ///
 /// Returned as the `State` field in a Docker inspect response.
+@immutable
 class ContainerState {
   /// Lifecycle status string: `'created'`, `'running'`, `'paused'`,
   /// `'restarting'`, `'removing'`, `'exited'`, or `'dead'`.
@@ -148,6 +153,7 @@ class ContainerState {
 }
 
 /// The platform (OS and architecture) of a container image.
+@immutable
 class ContainerPlatform {
   /// CPU architecture string, e.g. `'amd64'` or `'arm64'`.
   final String? architecture;
@@ -171,6 +177,7 @@ class ContainerPlatform {
 }
 
 /// Describes a layer in an image manifest (OCI image spec).
+@immutable
 class ContainerImageManifestDescriptor {
   /// MIME type of the manifest or layer.
   final String? mediaType;
@@ -230,6 +237,7 @@ class ContainerImageManifestDescriptor {
 }
 
 /// A single entry in the `BlkioWeightDevice` host-config list.
+@immutable
 class ContainerBlkioWeightDevice {
   /// Device path on the host, e.g. `'/dev/sda'`.
   final String? path;
@@ -252,6 +260,7 @@ class ContainerBlkioWeightDevice {
 ///
 /// Used for `BlkioDeviceReadBps`, `BlkioDeviceWriteBps`,
 /// `BlkioDeviceReadIOps`, and `BlkioDeviceWriteIOps`.
+@immutable
 class ContainerBlkioDeviceRate {
   /// Device path on the host.
   final String? path;
@@ -271,6 +280,7 @@ class ContainerBlkioDeviceRate {
 }
 
 /// A host device exposed inside the container.
+@immutable
 class ContainerDeviceMapping {
   /// Path to the device on the host.
   final String? pathOnHost;
@@ -299,6 +309,7 @@ class ContainerDeviceMapping {
 
 /// A request for generic device access (e.g. GPU via the NVIDIA device
 /// plugin).
+@immutable
 class ContainerDeviceRequest {
   /// Driver to use for the request (e.g. `'nvidia'`).
   final String? driver;
@@ -339,6 +350,7 @@ class ContainerDeviceRequest {
 }
 
 /// A ulimit (resource limit) applied to the container.
+@immutable
 class ContainerUlimit {
   /// The ulimit type, e.g. `'nofile'` or `'nproc'`.
   final String? name;
@@ -362,6 +374,7 @@ class ContainerUlimit {
 }
 
 /// Logging driver configuration for a container.
+@immutable
 class ContainerLogConfig {
   /// Log driver name, e.g. `'json-file'`, `'syslog'`, `'none'`.
   final String? type;
@@ -386,6 +399,7 @@ class ContainerLogConfig {
 /// The Docker daemon maps a container port to an ephemeral host port.
 /// Multiple [ContainerPortBinding] entries can exist for the same container
 /// port (e.g. to bind on both `0.0.0.0` and `::` for IPv4 + IPv6).
+@immutable
 class ContainerPortBinding {
   /// Host IP address to bind on, e.g. `'0.0.0.0'` or `'127.0.0.1'`.
   final String? hostIp;
@@ -405,6 +419,7 @@ class ContainerPortBinding {
 }
 
 /// The restart policy applied to a container.
+@immutable
 class ContainerRestartPolicy {
   /// Policy name: `'no'`, `'always'`, `'on-failure'`, or
   /// `'unless-stopped'`.
@@ -425,6 +440,7 @@ class ContainerRestartPolicy {
 }
 
 /// Mount propagation options for a bind mount.
+@immutable
 class ContainerBindOptions {
   /// Propagation mode: `'private'`, `'rprivate'`, `'shared'`, `'rshared'`,
   /// `'slave'`, or `'rslave'`.
@@ -463,6 +479,7 @@ class ContainerBindOptions {
 }
 
 /// Driver configuration for a named volume.
+@immutable
 class ContainerVolumeDriverConfig {
   /// Volume driver name, e.g. `'local'`.
   final String? name;
@@ -483,6 +500,7 @@ class ContainerVolumeDriverConfig {
 }
 
 /// Options for a volume mount.
+@immutable
 class ContainerVolumeOptions {
   /// When `true`, disables copying data from the container path to the volume
   /// on first use.
@@ -519,6 +537,7 @@ class ContainerVolumeOptions {
 }
 
 /// Options for an image-based mount.
+@immutable
 class ContainerImageOptions {
   /// Sub-path within the image to mount.
   final String? subpath;
@@ -532,6 +551,7 @@ class ContainerImageOptions {
 }
 
 /// Options for a `tmpfs` (in-memory) mount.
+@immutable
 class ContainerTmpfsOptions {
   /// Maximum size of the tmpfs in bytes.
   final int? sizeBytes;
@@ -557,6 +577,7 @@ class ContainerTmpfsOptions {
 }
 
 /// A mount point attached to the container (as declared in `HostConfig.Mounts`).
+@immutable
 class ContainerMountPoint {
   /// Mount type: `'bind'`, `'volume'`, `'tmpfs'`, or `'image'`.
   final String? type;
@@ -624,6 +645,7 @@ class ContainerMountPoint {
 /// This is the Dart model for Docker's `HostConfig` JSON object, which
 /// contains resource constraints, port bindings, volume mounts, and many
 /// other runtime settings.
+@immutable
 class ContainerHostConfig {
   /// CPU shares relative to other containers (default `0` = unlimited).
   final int? cpuShares;
@@ -1042,6 +1064,7 @@ class ContainerHostConfig {
 }
 
 /// The storage driver and its metadata for a container's writable layer.
+@immutable
 class ContainerGraphDriver {
   /// Storage driver name, e.g. `'overlay2'`.
   final String? name;
@@ -1065,6 +1088,7 @@ class ContainerGraphDriver {
 /// Returned in the `Mounts` array of a container inspect response; represents
 /// the resolved, active state rather than the declared intent captured in
 /// [ContainerMountPoint].
+@immutable
 class ContainerMount {
   /// Mount type: `'bind'`, `'volume'`, or `'tmpfs'`.
   final String? type;
@@ -1117,6 +1141,7 @@ class ContainerMount {
 
 /// The health-check configuration baked into an image or specified at
 /// container creation time.
+@immutable
 class ContainerHealthcheck {
   /// Health-check command, e.g. `['CMD', 'curl', '-f', 'http://localhost/']`.
   ///
@@ -1165,6 +1190,7 @@ class ContainerHealthcheck {
 /// run time.
 ///
 /// This corresponds to Docker's `Config` sub-object in the inspect response.
+@immutable
 class ContainerConfig {
   /// Hostname set inside the container.
   final String? hostname;
@@ -1308,6 +1334,7 @@ class ContainerConfig {
 }
 
 /// Static IP configuration for a network endpoint (IPAM).
+@immutable
 class ContainerIPAMConfig {
   /// Statically assigned IPv4 address.
   final String? ipv4Address;
@@ -1335,6 +1362,7 @@ class ContainerIPAMConfig {
 }
 
 /// A container's connection details on a single Docker network.
+@immutable
 class ContainerNetworkEndpoint {
   /// Static IP assignment configuration.
   final ContainerIPAMConfig? ipamConfig;
@@ -1426,6 +1454,7 @@ class ContainerNetworkEndpoint {
 }
 
 /// A single IP address assigned to a container's secondary network interface.
+@immutable
 class ContainerAddress {
   /// IP address string.
   final String? addr;
@@ -1447,6 +1476,7 @@ class ContainerAddress {
 /// The complete network configuration of a running container.
 ///
 /// Returned as the `NetworkSettings` field in a container inspect response.
+@immutable
 class ContainerNetworkSettings {
   /// Name of the default bridge network.
   final String? bridge;
@@ -1586,6 +1616,7 @@ class ContainerNetworkSettings {
 /// Returned by [DockerClient.containerInspectInfo] and by
 /// `ComposeContainer.containerInfo`. All fields are optional — Docker's
 /// API may omit fields depending on the daemon version and container state.
+@immutable
 class ContainerInspectInfo {
   /// Full container ID (64-character hex string).
   final String? id;

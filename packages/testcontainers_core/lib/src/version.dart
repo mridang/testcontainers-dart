@@ -5,6 +5,8 @@
 /// requirements can be checked at runtime.
 library;
 
+import 'package:meta/meta.dart';
+
 /// A parsed semantic version that supports full ordering.
 ///
 /// Only the strict three-part `major.minor.patch` format is accepted. All
@@ -21,6 +23,7 @@ library;
 /// assert(v > ComparableVersion('1.40.0'));
 /// assert(v == '1.41.0');
 /// ```
+@immutable
 class ComparableVersion implements Comparable<ComparableVersion> {
   /// The major version component.
   final int major;

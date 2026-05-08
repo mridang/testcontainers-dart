@@ -118,6 +118,7 @@ const int _tarChecksumOffset = 148;
 const int _tarRegularFileType = 48;
 
 /// Internal value type wrapping a raw HTTP response.
+@immutable
 class _DockerResponse {
   final int statusCode;
   final Map<String, String> headers;

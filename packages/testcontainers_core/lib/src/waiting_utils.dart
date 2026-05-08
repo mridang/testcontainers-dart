@@ -114,7 +114,7 @@ abstract class WaitStrategy {
     milliseconds: (testcontainersConfig.sleepTime * 1000).toInt(),
   );
 
-  Set<Type> _transientExceptions = {TimeoutException, SocketException};
+  Set<Type> _transientExceptions = const {TimeoutException, SocketException};
 
   /// Sets the maximum startup timeout.
   ///

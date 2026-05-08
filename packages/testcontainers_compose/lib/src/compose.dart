@@ -25,6 +25,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
+import 'package:meta/meta.dart';
 import 'package:testcontainers_core/testcontainers_core.dart';
 
 // One-shot deprecation warning for getConfig — printed on the first call only.
@@ -74,6 +75,7 @@ enum IpVersion {
 /// Docker Compose returns port info in its `docker compose ps --format json`
 /// output. Each entry maps a container [targetPort] to a host [publishedPort]
 /// at host [url].
+@immutable
 class PublishedPortModel {
   /// Host IP address or hostname that the port is bound on.
   ///
