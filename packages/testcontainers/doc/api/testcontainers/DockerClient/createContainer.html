@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the createContainer method from the DockerClient class, for the Dart programming language.">
+  <title>createContainer method - DockerClient class - testcontainers library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">testcontainers</a></li>
+    <li><a href="../../testcontainers">testcontainers.dart</a></li>
+    <li><a href="../../testcontainers/DockerClient-class.html">DockerClient</a></li>
+    <li class="self-crumb">createContainer method</li>
+  </ol>
+  <div class="self-name">createContainer</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button" title="Toggle brightness">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span id="dark-theme-button" class="material-symbols-outlined">
+        dark_mode
+      </span>
+      <span id="light-theme-button" class="material-symbols-outlined">
+        light_mode
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+<div
+    id="dartdoc-main-content"
+    class="main-content"
+    data-above-sidebar="testcontainers&#47;DockerClient-class-sidebar.html"
+    data-below-sidebar="">
+    <div>
+<h1><span class="kind-method">createContainer</span> method 
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<span class="returntype"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span>
+<span class="name ">createContainer</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="createContainer-param-image"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">image</span>, {</span></li>
+<li><span class="parameter" id="createContainer-param-command"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">command</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-env"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span></span> <span class="parameter-name">env</span> = <span class="default-value">const {}</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-name"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">name</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-ports"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a>?</span>&gt;</span></span> <span class="parameter-name">ports</span> = <span class="default-value">const {}</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-volumes"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">volumes</span> = <span class="default-value">const {}</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-tmpfs"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">tmpfs</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-labels"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">labels</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-network"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">network</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-networkAliases"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>&gt;</span>?</span> <span class="parameter-name">networkAliases</span>, </span></li>
+<li><span class="parameter" id="createContainer-param-kwargs"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span>?</span> <span class="parameter-name">kwargs</span>, </span></li>
+</ol>})
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Creates a container and returns its ID.</p>
+<p>Sends <code>POST /containers/create</code> with the given configuration. The
+<a href="../../testcontainers/createLabels.html">createLabels</a> function is called automatically to stamp the container
+with testcontainers metadata labels.</p>
+<p>Parameters:</p>
+<ul>
+<li><code>image</code> — Docker image name (with optional tag).</li>
+<li><code>command</code> — command override. <code>null</code> uses the image's default.</li>
+<li><code>env</code> — environment variables as a <code>KEY → value</code> map.</li>
+<li><code>name</code> — optional container name.</li>
+<li><code>ports</code> — map of <code>containerPort → hostPort</code> (use <code>null</code> for an
+ephemeral host port).</li>
+<li><code>volumes</code> — bind mounts: <code>hostPath → {bind: containerPath, mode: 'ro'|'rw'}</code>.</li>
+<li><code>tmpfs</code> — tmpfs mounts: <code>containerPath → options string</code>.</li>
+<li><code>labels</code> — additional Docker labels (must not start with
+<code>org.testcontainers</code>).</li>
+<li><code>network</code> — network name or ID to attach the container to.</li>
+<li><code>networkAliases</code> — DNS aliases on <code>network</code>.</li>
+<li><code>kwargs</code> — extra Docker <code>HostConfig</code> fields (camelCase Dart names are
+converted to PascalCase Docker names).</li>
+</ul>
+<p>Returns the new container's full ID string.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">Future&lt;String&gt; createContainer(
+  String image, {
+  List&lt;String&gt;? command,
+  Map&lt;String, String&gt; env = const {},
+  String? name,
+  Map&lt;int, int?&gt; ports = const {},
+  Map&lt;String, dynamic&gt; volumes = const {},
+  Map&lt;String, String&gt;? tmpfs,
+  Map&lt;String, String&gt;? labels,
+  String? network,
+  List&lt;String&gt;? networkAliases,
+  Map&lt;String, dynamic&gt;? kwargs,
+}) async {
+  final exposedPorts = &lt;String, dynamic&gt;{};
+  final portBindings = &lt;String, dynamic&gt;{};
+
+  for (final entry in ports.entries) {
+    final containerPort = &#39;${entry.key}&#47;tcp&#39;;
+    exposedPorts[containerPort] = {};
+    portBindings[containerPort] = [
+      {&#39;HostIp&#39;: &#39;&#39;, &#39;HostPort&#39;: entry.value?.toString() ?? &#39;&#39;},
+    ];
+  }
+
+  &#47;&#47; Extract user-provided labels from kwargs so they don&#39;t end up in HostConfig
+  final userLabels =
+      kwargs?[&#39;labels&#39;] as Map&lt;String, String&gt;? ?? labels;
+  final hostConfigKwargs = kwargs != null
+      ? (Map&lt;String, dynamic&gt;.from(kwargs)..remove(&#39;labels&#39;))
+      : null;
+
+  final body = &lt;String, dynamic&gt;{
+    &#39;Image&#39;: image,
+    &#39;ExposedPorts&#39;: exposedPorts,
+    &#39;Env&#39;: env.entries.map((e) =&gt; &#39;${e.key}=${e.value}&#39;).toList(),
+    &#39;Labels&#39;: createLabels(image, userLabels),
+    &#39;HostConfig&#39;: {
+      &#39;PortBindings&#39;: portBindings,
+      &#39;Binds&#39;: volumes.entries
+          .map((e) {
+            final v = e.value as Map&lt;String, dynamic&gt;;
+            return &#39;${e.key}:${v[&#39;bind&#39;]}:${v[&#39;mode&#39;] ?? &#39;ro&#39;}&#39;;
+          })
+          .toList(),
+      if (tmpfs != null &amp;&amp; tmpfs.isNotEmpty) &#39;Tmpfs&#39;: tmpfs,
+      if (network != null) &#39;NetworkMode&#39;: network,
+      ...?hostConfigKwargs?.map(
+        (k, v) =&gt; MapEntry(_toDockerKey(k), v),
+      ),
+    },
+    if (command != null) &#39;Cmd&#39;: command,
+  };
+
+  if (network != null &amp;&amp; networkAliases != null) {
+    body[&#39;NetworkingConfig&#39;] = {
+      &#39;EndpointsConfig&#39;: {
+        network: {
+          &#39;Aliases&#39;: networkAliases,
+        },
+      },
+    };
+  }
+
+  final queryParams =
+      name != null ? &lt;String, String&gt;{&#39;name&#39;: name} : null;
+  final resp = await _request(
+    &#39;POST&#39;,
+    &#39;&#47;containers&#47;create&#39;,
+    queryParams: queryParams,
+    body: body,
+  );
+  _throwIfError(resp);
+  final data = resp.bodyJson as Map&lt;String, dynamic&gt;;
+  return data[&#39;Id&#39;] as String;
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../../index.html">testcontainers</a></li>
+    <li><a href="../../testcontainers">testcontainers</a></li>
+    <li><a href="../../testcontainers/DockerClient-class.html">DockerClient</a></li>
+    <li class="self-crumb">createContainer method</li>
+</ol>
+
+    <h5>DockerClient class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+</div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    testcontainers
+      0.1.0
+  </span>
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

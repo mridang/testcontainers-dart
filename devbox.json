@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.0/.schema/devbox.schema.json",
+  "packages": [
+    "dart@3.7.2",
+    "docker@latest",
+    "melos@6.3.2"
+  ],
+  "env": {
+    "PUB_CACHE": "$DEVBOX_PROJECT_ROOT/.pub"
+  },
+  "shell": {
+    "init_hook": [
+      "export PATH=\"$PUB_CACHE/bin:$PATH\"",
+      "[ -f \"$PUB_CACHE/bin/tojunit\" ] || dart pub global activate junitreport",
+      "[ -f \"$PUB_CACHE/bin/format_coverage\" ] || dart pub global activate coverage"
+    ],
+    "scripts": {
+      "bootstrap": "melos bootstrap",
+      "test": "melos run test",
+      "test:unit": "melos run test:unit",
+      "test:integration": "melos run test:integration",
+      "analyze": "melos run analyze",
+      "format": "melos run format:fix",
+      "doc": "melos run doc"
+    }
+  }
+}
