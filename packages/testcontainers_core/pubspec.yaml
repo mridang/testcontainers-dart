@@ -1,7 +1,7 @@
 name: testcontainers_core
 description: >-
   Dart library for throwaway instances of anything that can run in a Docker container
-11.0.4
+version: 1.0.4
 homepage: https://github.com/mridang/testcontainers-dart
 repository: https://github.com/mridang/testcontainers-dart
 issue_tracker: https://github.com/mridang/testcontainers-dart/issues
