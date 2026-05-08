@@ -395,7 +395,8 @@ class ComposeContainer implements WaitStrategyTarget {
       _cachedContainerInfo =
           await compose._dockerClient.containerInspectInfo(containerId);
     } catch (_) {
-      _cachedContainerInfo = null;
+      // Do not cache on failure — retry on next call.
+      return null;
     }
     return _cachedContainerInfo;
   }
@@ -869,7 +870,7 @@ class DockerCompose {
       try {
         final response =
             await http.get(Uri.parse(url)).timeout(const Duration(seconds: 1));
-        if (response.statusCode >= 200 && response.statusCode < 400) {
+        if (response.statusCode >= 200 && response.statusCode < 300) {
           return this;
         }
       } catch (_) {

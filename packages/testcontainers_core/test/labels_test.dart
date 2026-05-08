@@ -1,9 +1,26 @@
 @Tags(['unit'])
 library;
 
+import 'dart:io';
+
 import 'package:test/test.dart';
 import 'package:testcontainers_core/src/config.dart';
 import 'package:testcontainers_core/src/labels.dart';
+
+/// Reads the `version:` field from the package's own `pubspec.yaml`.
+///
+/// Used only in tests to verify that [tcVersion] matches the declared version.
+/// Works because `dart test` always runs with CWD = package directory.
+String _pubspecVersion() {
+  try {
+    for (final line in File('pubspec.yaml').readAsLinesSync()) {
+      if (line.startsWith('version:')) {
+        return line.split(':')[1].trim();
+      }
+    }
+  } catch (_) {}
+  return 'unknown';
+}
 
 void main() {
   group('createLabels', () {
@@ -87,7 +104,7 @@ void main() {
     });
 
     test('tcVersion matches package version', () {
-      expect(tcVersion, equals('0.1.0'));
+      expect(tcVersion, equals(_pubspecVersion()));
     });
 
     test('sessionId is process-scoped — same value on two calls', () {

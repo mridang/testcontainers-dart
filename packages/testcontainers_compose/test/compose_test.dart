@@ -64,36 +64,36 @@ void main() {
     test(
       'normalizeRewritesLocalUrlForSshDockerHost_sshReplacesWildcard',
       () {
-        final savedDockerHost = Platform.environment['DOCKER_HOST'];
+        final saved = testcontainersConfig.tcProperties['tc.host'];
         try {
-          _withEnv({'DOCKER_HOST': 'ssh://user@10.0.0.5'}, () {
-            final model = const PublishedPortModel(
-              url: '0.0.0.0',
-              targetPort: 80,
-              publishedPort: 9999,
-              protocol: 'tcp',
-            );
-            final result = model.normalize();
-            expect(result.url, equals('10.0.0.5'));
-            expect(result.publishedPort, equals(9999));
-          });
+          testcontainersConfig.tcProperties['tc.host'] = 'ssh://user@10.0.0.5';
+          const model = PublishedPortModel(
+            url: '0.0.0.0',
+            targetPort: 80,
+            publishedPort: 9999,
+            protocol: 'tcp',
+          );
+          final result = model.normalize();
+          expect(result.url, equals('10.0.0.5'));
+          expect(result.publishedPort, equals(9999));
         } finally {
-          if (savedDockerHost != null) {
-            _withEnv({'DOCKER_HOST': savedDockerHost}, () {});
+          if (saved != null) {
+            testcontainersConfig.tcProperties['tc.host'] = saved;
+          } else {
+            testcontainersConfig.tcProperties.remove('tc.host');
           }
         }
       },
       tags: ['unit'],
-      // Platform.environment is read-only in Dart; subprocess env changes
-      // do not affect the running Dart process.
-      skip: 'Dart cannot mutate Platform.environment at runtime',
     );
 
     test(
       'normalizeRewritesLocalUrlForSshDockerHost_sshReplacesLoopback',
       () {
-        _withEnv({'DOCKER_HOST': 'ssh://user@10.0.0.5'}, () {
-          final model = const PublishedPortModel(
+        final saved = testcontainersConfig.tcProperties['tc.host'];
+        try {
+          testcontainersConfig.tcProperties['tc.host'] = 'ssh://user@10.0.0.5';
+          const model = PublishedPortModel(
             url: '127.0.0.1',
             targetPort: 80,
             publishedPort: 9999,
@@ -102,17 +102,24 @@ void main() {
           final result = model.normalize();
           expect(result.url, equals('10.0.0.5'));
           expect(result.publishedPort, equals(9999));
-        });
+        } finally {
+          if (saved != null) {
+            testcontainersConfig.tcProperties['tc.host'] = saved;
+          } else {
+            testcontainersConfig.tcProperties.remove('tc.host');
+          }
+        }
       },
       tags: ['unit'],
-      skip: 'Dart cannot mutate Platform.environment at runtime',
     );
 
     test(
       'normalizeRewritesLocalUrlForSshDockerHost_sshReplacesIpv6Any',
       () {
-        _withEnv({'DOCKER_HOST': 'ssh://user@10.0.0.5'}, () {
-          final model = const PublishedPortModel(
+        final saved = testcontainersConfig.tcProperties['tc.host'];
+        try {
+          testcontainersConfig.tcProperties['tc.host'] = 'ssh://user@10.0.0.5';
+          const model = PublishedPortModel(
             url: '::',
             targetPort: 80,
             publishedPort: 9999,
@@ -121,17 +128,26 @@ void main() {
           final result = model.normalize();
           expect(result.url, equals('10.0.0.5'));
           expect(result.publishedPort, equals(9999));
-        });
+        } finally {
+          if (saved != null) {
+            testcontainersConfig.tcProperties['tc.host'] = saved;
+          } else {
+            testcontainersConfig.tcProperties.remove('tc.host');
+          }
+        }
       },
       tags: ['unit'],
-      skip: 'Dart cannot mutate Platform.environment at runtime',
     );
 
     test(
       'normalizeRewritesLocalUrlForSshDockerHost_nonSshKeepsOriginal',
       () {
-        _withEnv({'DOCKER_HOST': 'tcp://localhost:2375'}, () {
-          final model = const PublishedPortModel(
+        final saved = testcontainersConfig.tcProperties['tc.host'];
+        try {
+          // A non-SSH Docker host must not trigger the SSH rewrite logic.
+          testcontainersConfig.tcProperties['tc.host'] =
+              'tcp://localhost:2375';
+          const model = PublishedPortModel(
             url: '0.0.0.0',
             targetPort: 80,
             publishedPort: 9999,
@@ -140,7 +156,13 @@ void main() {
           final result = model.normalize();
           expect(result.url, equals('0.0.0.0'));
           expect(result.publishedPort, equals(9999));
-        });
+        } finally {
+          if (saved != null) {
+            testcontainersConfig.tcProperties['tc.host'] = saved;
+          } else {
+            testcontainersConfig.tcProperties.remove('tc.host');
+          }
+        }
       },
       tags: ['unit'],
     );
@@ -1874,35 +1896,4 @@ void main() {
       tags: ['integration'],
     );
   });
-}
-
-void _withEnv(Map<String, String> env, void Function() fn) {
-  final saved = <String, String?>{};
-  for (final key in env.keys) {
-    saved[key] = Platform.environment[key];
-  }
-
-  for (final entry in env.entries) {
-    _setEnv(entry.key, entry.value);
-  }
-
-  try {
-    fn();
-  } finally {
-    for (final entry in saved.entries) {
-      if (entry.value != null) {
-        _setEnv(entry.key, entry.value!);
-      } else {
-        _unsetEnv(entry.key);
-      }
-    }
-  }
-}
-
-void _setEnv(String key, String value) {
-  Process.runSync('bash', ['-c', 'export $key=$value']);
-}
-
-void _unsetEnv(String key) {
-  Process.runSync('bash', ['-c', 'unset $key']);
 }

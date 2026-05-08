@@ -8,7 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "perl -pi -e 's/^version: .*/version: ${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml"
+        "prepareCmd": "perl -pi -e 's/^version: .*/version: ${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml && perl -pi -e \"s/const String tcVersion = '[^']*'/const String tcVersion = '${nextRelease.version}'/\" packages/testcontainers_core/lib/src/labels.dart"
       }
     ],
     [
@@ -23,7 +23,8 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
         "assets": [
           "packages/testcontainers_core/pubspec.yaml",
-          "packages/testcontainers_compose/pubspec.yaml"
+          "packages/testcontainers_compose/pubspec.yaml",
+          "packages/testcontainers_core/lib/src/labels.dart"
         ]
       }
     ]

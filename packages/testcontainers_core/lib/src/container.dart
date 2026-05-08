@@ -347,7 +347,9 @@ class DockerContainer implements WaitStrategyTarget {
   /// Throws [ContainerStartException] or `HttpException` on failure.
   Future<DockerContainer> start() async {
     if (!testcontainersConfig.ryukDisabled &&
-        image != testcontainersConfig.ryukImage) {
+        image !=
+            testcontainersConfig.hubImageNamePrefix +
+                testcontainersConfig.ryukImage) {
       await Reaper.getInstance();
     }
 
