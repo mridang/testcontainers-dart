@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   id-token: write
+  actions: write
 
 defaults:
   run:
@@ -60,16 +61,21 @@ jobs:
           LATEST=$(git tag -l 'v*' --sort=-version:refname | head -1)
           if [ "$LATEST" != "${{ steps.before.outputs.tag }}" ] && [ -n "$LATEST" ]; then
             echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "new_tag=$LATEST" >> "$GITHUB_OUTPUT"
           else
             echo "released=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish testcontainers_core
+      - name: Dispatch publish workflow on new tag
         if: steps.detect.outputs.released == 'true'
-        working-directory: packages/testcontainers_core
-        run: dart pub publish --force
-
-      - name: Publish testcontainers_compose
-        if: steps.detect.outputs.released == 'true'
-        working-directory: packages/testcontainers_compose
-        run: dart pub publish --force
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish.yml',
+              ref: '${{ steps.detect.outputs.new_tag }}'
+            });
+            core.info('Dispatched publish.yml at ${{ steps.detect.outputs.new_tag }}');
