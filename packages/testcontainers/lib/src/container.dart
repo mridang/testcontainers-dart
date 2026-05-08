@@ -721,8 +721,7 @@ class Reaper {
   ///
   /// Throws [ContainerConnectException] when the Ryuk container's host/port
   /// cannot be determined, or when all 50 TCP connection attempts fail.
-  static Future<Reaper> getInstance() =>
-      _initFuture ??= _createInstance();
+  static Future<Reaper> getInstance() => _initFuture ??= _createInstance();
 
   /// Closes the Ryuk TCP socket and removes the Ryuk container.
   ///

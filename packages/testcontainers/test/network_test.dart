@@ -31,7 +31,8 @@ void main() {
   });
 
   group('Network.remove before create', () {
-    test('remove completes without error when create was never called', () async {
+    test('remove completes without error when create was never called',
+        () async {
       // _networkId is null → remove() is a no-op; no Docker call is made.
       final network = Network();
       await expectLater(network.remove(), completes);
@@ -39,7 +40,8 @@ void main() {
   });
 
   group('Network.connect before create', () {
-    test('connect throws StateError when network has not been created', () async {
+    test('connect throws StateError when network has not been created',
+        () async {
       final network = Network();
       await expectLater(
         network.connect('some-container-id'),

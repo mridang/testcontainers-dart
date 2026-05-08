@@ -96,7 +96,8 @@ void main() {
     test('strips multiple consecutive frames', () {
       final p1 = Uint8List.fromList('foo'.codeUnits);
       final p2 = Uint8List.fromList('bar'.codeUnits);
-      final frames = Uint8List.fromList([..._makeLogFrame(1, p1), ..._makeLogFrame(1, p2)]);
+      final frames = Uint8List.fromList(
+          [..._makeLogFrame(1, p1), ..._makeLogFrame(1, p2)]);
       final stripped = client.stripDockerLogHeaders(frames);
       expect(String.fromCharCodes(stripped), equals('foobar'));
     });
@@ -253,8 +254,7 @@ void main() {
 
     test('extracts hostname when SSH URL has no userinfo component', () {
       // ssh://host.example.com — no user@ prefix.
-      testcontainersConfig.tcProperties['tc.host'] =
-          'ssh://host.example.com';
+      testcontainersConfig.tcProperties['tc.host'] = 'ssh://host.example.com';
       expect(dockerHostHostname(), equals('host.example.com'));
     });
 
@@ -376,8 +376,7 @@ void main() {
 
     test('returns hostname when tc.host is a tcp:// URL', () {
       // Branch 3 in host getter: rawHost.startsWith('tcp://') → parse URI host.
-      testcontainersConfig.tcProperties['tc.host'] =
-          'tcp://192.168.10.5:2375';
+      testcontainersConfig.tcProperties['tc.host'] = 'tcp://192.168.10.5:2375';
       expect(client.host, equals('192.168.10.5'));
     });
 
@@ -389,14 +388,14 @@ void main() {
 
     test('returns hostname when tc.host is an https:// URL', () {
       // Branch 3 also covers https://.
-      testcontainersConfig.tcProperties['tc.host'] = 'https://docker.remote:2376';
+      testcontainersConfig.tcProperties['tc.host'] =
+          'https://docker.remote:2376';
       expect(client.host, equals('docker.remote'));
     });
 
     test(
         'returns localhost or real host when tc.host is absent and not inside '
-        'a container',
-        () {
+        'a container', () {
       // When tc.host is absent and we are NOT inside a Docker container,
       // branch 4 (defaultGatewayIp) is skipped and we fall through to
       // 'localhost' — unless DOCKER_HOST or TC_HOST env vars override.
@@ -433,8 +432,7 @@ void main() {
   // DockerClient.connectionMode getter
   // ---------------------------------------------------------------------------
   group('DockerClient.connectionMode', () {
-    test(
-        'returns dockerHost when not inside a container (normal CI/dev env)',
+    test('returns dockerHost when not inside a container (normal CI/dev env)',
         () {
       // On macOS or a Linux machine where /.dockerenv does not exist,
       // insideContainer() returns false and connectionMode must be dockerHost.

@@ -253,7 +253,8 @@ void main() {
     });
 
     test('healthcheck is null when Healthcheck key is absent', () {
-      final config = ContainerConfig.fromJson({'Image': 'alpine', 'Hostname': 'h'});
+      final config =
+          ContainerConfig.fromJson({'Image': 'alpine', 'Hostname': 'h'});
       expect(config.healthcheck, isNull);
     });
 
@@ -279,7 +280,8 @@ void main() {
         'StartPeriod': 15000000000,
         'StartInterval': 2000000000,
       });
-      expect(hc.test, equals(['CMD-SHELL', 'curl -f http://localhost/ || exit 1']));
+      expect(hc.test,
+          equals(['CMD-SHELL', 'curl -f http://localhost/ || exit 1']));
       expect(hc.interval, equals(30000000000));
       expect(hc.timeout, equals(10000000000));
       expect(hc.retries, equals(5));
@@ -403,7 +405,8 @@ void main() {
       expect(hc.blkioDeviceWriteIOps!.first.rate, equals(500));
     });
 
-    test('parses portBindings — published and null (exposed-but-not-bound)', () {
+    test('parses portBindings — published and null (exposed-but-not-bound)',
+        () {
       // PortBindings in HostConfig mirrors ContainerNetworkSettings.Ports:
       // a null value means the port is EXPOSE-d but not -p published.
       final hc = ContainerHostConfig.fromJson({
@@ -706,7 +709,8 @@ void main() {
     });
 
     test('empty Ports map produces empty ports field', () {
-      final ns = ContainerNetworkSettings.fromJson({'Ports': <String, dynamic>{}});
+      final ns =
+          ContainerNetworkSettings.fromJson({'Ports': <String, dynamic>{}});
       expect(ns.ports, isNotNull);
       expect(ns.ports!, isEmpty);
     });
@@ -716,7 +720,8 @@ void main() {
   // ContainerNetworkSettings — scalar and metadata fields
   // ---------------------------------------------------------------------------
   group('ContainerNetworkSettings scalar fields', () {
-    test('parses bridge, sandboxID, hairpinMode, and link-local IPv6 fields', () {
+    test('parses bridge, sandboxID, hairpinMode, and link-local IPv6 fields',
+        () {
       final ns = ContainerNetworkSettings.fromJson({
         'Bridge': 'docker0',
         'SandboxID': 'sandbox123',
@@ -1094,7 +1099,8 @@ void main() {
         'Options': {'type': 'tmpfs', 'device': 'tmpfs'},
       });
       expect(driverConfig.name, equals('local'));
-      expect(driverConfig.options, equals({'type': 'tmpfs', 'device': 'tmpfs'}));
+      expect(
+          driverConfig.options, equals({'type': 'tmpfs', 'device': 'tmpfs'}));
     });
   });
 
@@ -1247,7 +1253,10 @@ void main() {
       final opts = ContainerVolumeOptions.fromJson({
         'NoCopy': false,
         'Labels': {'com.example.owner': 'test'},
-        'DriverConfig': {'Name': 'local', 'Options': {'device': 'tmpfs'}},
+        'DriverConfig': {
+          'Name': 'local',
+          'Options': {'device': 'tmpfs'}
+        },
         'Subpath': 'data',
       });
       expect(opts.noCopy, isFalse);
@@ -1403,7 +1412,8 @@ void main() {
 
   group('ContainerAddress', () {
     test('fromJson parses addr and prefixLen', () {
-      final addr = ContainerAddress.fromJson({'Addr': '10.0.0.2', 'PrefixLen': 24});
+      final addr =
+          ContainerAddress.fromJson({'Addr': '10.0.0.2', 'PrefixLen': 24});
       expect(addr.addr, equals('10.0.0.2'));
       expect(addr.prefixLen, equals(24));
     });

@@ -432,7 +432,11 @@ class DockerClient {
   ({int statusCode, Map<String, String> headers, Uint8List body})
       parseHttpResponse(Uint8List bytes) {
     final resp = _parseHttpResponse(bytes);
-    return (statusCode: resp.statusCode, headers: resp.headers, body: resp.body);
+    return (
+      statusCode: resp.statusCode,
+      headers: resp.headers,
+      body: resp.body
+    );
   }
 
   /// Creates a container and returns its ID.

@@ -41,7 +41,8 @@ void main() {
     });
 
     test('dockerfilePath is stored when supplied', () {
-      final img = DockerImage(path: '/tmp/myapp', dockerfilePath: 'Dockerfile.dev');
+      final img =
+          DockerImage(path: '/tmp/myapp', dockerfilePath: 'Dockerfile.dev');
       expect(img.dockerfilePath, equals('Dockerfile.dev'));
     });
 
@@ -79,7 +80,8 @@ void main() {
   });
 
   group('DockerImage.remove before build', () {
-    test('remove completes without error when build was never called', () async {
+    test('remove completes without error when build was never called',
+        () async {
       // _imageId is null → remove() is a no-op regardless of cleanUp.
       final img = DockerImage(path: '/tmp/myapp');
       await expectLater(img.remove(), completes);
@@ -159,7 +161,8 @@ void main() {
       expect(img.shortId, equals('short'));
     });
 
-    test('strips sha256: prefix leaving fewer than 12 chars — returns rest', () async {
+    test('strips sha256: prefix leaving fewer than 12 chars — returns rest',
+        () async {
       // sha256:abc → strip → abc (3 chars, <12 → return as-is)
       stubBuild('sha256:abc');
       final img = DockerImage(path: '/ctx', dockerClient: mockClient);
@@ -194,7 +197,12 @@ void main() {
           noCache: any(named: 'noCache'),
           dockerfile: any(named: 'dockerfile'),
         ),
-      ).thenAnswer((_) async => ('sha256:abc', [<String, dynamic>{'stream': 'ok'}]));
+      ).thenAnswer((_) async => (
+            'sha256:abc',
+            [
+              <String, dynamic>{'stream': 'ok'}
+            ]
+          ));
       final img = DockerImage(path: '/ctx', dockerClient: mockClient);
       await img.build();
       expect(
@@ -203,7 +211,8 @@ void main() {
       );
     });
 
-    test('remove is a no-op when cleanUp is false (even after build)', () async {
+    test('remove is a no-op when cleanUp is false (even after build)',
+        () async {
       // cleanUp=false → remove() must not call removeImage even after build.
       stubBuild('sha256:deadbeef');
       when(

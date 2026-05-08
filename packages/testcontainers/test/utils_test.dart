@@ -68,7 +68,8 @@ void main() {
   });
 
   group('insideContainer platform-specific', () {
-    test('returns false on macOS (/.dockerenv never present on macOS host)', () {
+    test('returns false on macOS (/.dockerenv never present on macOS host)',
+        () {
       // /.dockerenv is a Docker-internal file placed only inside containers.
       // On a macOS host machine it cannot exist.
       if (Platform.isMacOS) {
