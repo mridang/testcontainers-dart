@@ -1,4 +1,4 @@
-name: Release to pub.dev
+name: Release
 
 on:
   push:
@@ -14,7 +14,7 @@ defaults:
     working-directory: ./
 
 jobs:
-  publish-package:
+  release:
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: ${{ github.workspace }}/.pub
@@ -42,6 +42,14 @@ jobs:
           dart pub global activate melos
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
+
+      - name: Get pub.dev token
+        run: |
+          npm install google-auth-library
+          echo "PUB_TOKEN=$(node scripts/get-pub-token.mjs)" >> "$GITHUB_ENV"
+
+      - name: Configure pub authentication
+        run: dart pub token add https://pub.dev --env-var PUB_TOKEN
 
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
