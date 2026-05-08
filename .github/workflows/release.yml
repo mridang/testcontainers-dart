@@ -36,13 +36,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pub-
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           dart pub global activate melos
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
       - name: Run semantic-release
+        id: release
         uses: mridang/action-semantic-release@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish testcontainers_core
+        if: steps.release.outputs.new-release-published == 'true'
+        working-directory: packages/testcontainers_core
+        run: dart pub publish --force
+
+      - name: Publish testcontainers_compose
+        if: steps.release.outputs.new-release-published == 'true'
+        working-directory: packages/testcontainers_compose
+        run: dart pub publish --force
