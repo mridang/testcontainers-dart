@@ -13,6 +13,12 @@ jobs:
     env:
       PUB_CACHE: ${{ github.workspace }}/.pub
 
+    strategy:
+      matrix:
+        package:
+          - testcontainers_core
+          - testcontainers_compose
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,5 +42,6 @@ jobs:
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
-      - name: Run dependency analysis
-        uses: mridang/action-dependency-insight@v1
+      - name: Check outdated dependencies
+        working-directory: packages/${{ matrix.package }}
+        run: dart pub outdated
