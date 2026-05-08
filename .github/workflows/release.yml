@@ -42,18 +42,34 @@ jobs:
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
+      - name: Record current latest tag
+        id: before
+        run: |
+          git fetch --tags
+          echo "tag=$(git tag -l 'v*' --sort=-version:refname | head -1)" >> "$GITHUB_OUTPUT"
+
       - name: Run semantic-release
-        id: release
         uses: mridang/action-semantic-release@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Detect new release
+        id: detect
+        run: |
+          git fetch --tags --force
+          LATEST=$(git tag -l 'v*' --sort=-version:refname | head -1)
+          if [ "$LATEST" != "${{ steps.before.outputs.tag }}" ] && [ -n "$LATEST" ]; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish testcontainers_core
-        if: steps.release.outputs.new-release-published == 'true'
+        if: steps.detect.outputs.released == 'true'
         working-directory: packages/testcontainers_core
         run: dart pub publish --force
 
       - name: Publish testcontainers_compose
-        if: steps.release.outputs.new-release-published == 'true'
+        if: steps.detect.outputs.released == 'true'
         working-directory: packages/testcontainers_compose
         run: dart pub publish --force
