@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: ${{ github.workspace }}/.pub
+      GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
 
     steps:
       - name: Checkout code
@@ -42,18 +43,15 @@ jobs:
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
-      - id: auth
-        name: Get pub.dev token
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
-          token_format: id_token
-          id_token_audience: https://pub.dev
+      - name: Get pub.dev token
+        run: |
+          npm install google-auth-library
+          echo "PUB_TOKEN=$(node scripts/get-pub-token.mjs)" >> "$GITHUB_ENV"
+          rm -f package.json package-lock.json
+          rm -rf node_modules
 
       - name: Configure pub authentication
         run: dart pub token add https://pub.dev --env-var PUB_TOKEN
-        env:
-          PUB_TOKEN: ${{ steps.auth.outputs.id_token }}
 
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
