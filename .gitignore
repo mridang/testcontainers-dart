@@ -4,7 +4,7 @@
 pubspec.lock
 pubspec_overrides.yaml
 build/
-doc/api/
+**/doc/api/
 
 # Melos
 .melos_tool/
