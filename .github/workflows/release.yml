@@ -1,4 +1,4 @@
-name: Release
+name: Release to pub.dev
 
 on:
   push:
@@ -8,17 +8,17 @@ on:
 permissions:
   contents: write
   id-token: write
+  actions: write
 
 defaults:
   run:
     working-directory: ./
 
 jobs:
-  release:
+  publish-package:
     runs-on: ubuntu-latest
     env:
       PUB_CACHE: ${{ github.workspace }}/.pub
-      GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
 
     steps:
       - name: Checkout code
@@ -43,17 +43,39 @@ jobs:
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
-      - name: Get pub.dev token
+      - name: Record current latest tag
+        id: before
         run: |
-          npm install google-auth-library
-          echo "PUB_TOKEN=$(node scripts/get-pub-token.mjs)" >> "$GITHUB_ENV"
-          rm -f package.json package-lock.json
-          rm -rf node_modules
-
-      - name: Configure pub authentication
-        run: dart pub token add https://pub.dev --env-var PUB_TOKEN
+          git fetch --tags
+          echo "tag=$(git tag -l 'v*' --sort=-version:refname | head -1)" >> "$GITHUB_OUTPUT"
 
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Detect new release
+        id: detect
+        run: |
+          git fetch --tags --force
+          LATEST=$(git tag -l 'v*' --sort=-version:refname | head -1)
+          if [ "$LATEST" != "${{ steps.before.outputs.tag }}" ] && [ -n "$LATEST" ]; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "new_tag=$LATEST" >> "$GITHUB_OUTPUT"
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Dispatch publish workflow on new tag
+        if: steps.detect.outputs.released == 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish.yml',
+              ref: '${{ steps.detect.outputs.new_tag }}'
+            });
+            core.info('Dispatched publish.yml at ${{ steps.detect.outputs.new_tag }}');

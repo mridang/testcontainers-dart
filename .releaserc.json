@@ -8,8 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "perl -i -pe 's/^(version:\\s*).*/${1}${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml",
-        "publishCmd": "(cd packages/testcontainers_core && dart pub publish --force) && (cd packages/testcontainers_compose && dart pub publish --force)"
+        "prepareCmd": "perl -pi -e 's/^version: .*/version: ${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml"
       }
     ],
     [

@@ -1,0 +1,49 @@
+name: Publish to pub.dev
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
+defaults:
+  run:
+    working-directory: ./
+
+jobs:
+  publish:
+    name: Publish packages
+    runs-on: ubuntu-latest
+    env:
+      PUB_CACHE: ${{ github.workspace }}/.pub
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PUB_CACHE }}
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Install dependencies
+        run: |
+          dart pub global activate melos
+          echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
+          "$PUB_CACHE/bin/melos" bootstrap
+
+      - name: Publish testcontainers_core
+        working-directory: packages/testcontainers_core
+        run: dart pub publish --force
+
+      - name: Publish testcontainers_compose
+        working-directory: packages/testcontainers_compose
+        run: dart pub publish --force
