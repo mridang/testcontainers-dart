@@ -97,7 +97,8 @@ void main() {
       final p1 = Uint8List.fromList('foo'.codeUnits);
       final p2 = Uint8List.fromList('bar'.codeUnits);
       final frames = Uint8List.fromList(
-          [..._makeLogFrame(1, p1), ..._makeLogFrame(1, p2)]);
+        [..._makeLogFrame(1, p1), ..._makeLogFrame(1, p2)],
+      );
       final stripped = client.stripDockerLogHeaders(frames);
       expect(String.fromCharCodes(stripped), equals('foobar'));
     });

@@ -38,8 +38,8 @@ bool _getConfigWarningPrinted = false;
 /// so stdout and stderr are always `String`. These getters surface that
 /// contract without requiring explicit `as String` casts at each call site.
 extension _ProcessResultX on ProcessResult {
-  String get stdoutString => stdout.toString();
-  String get stderrString => stderr.toString();
+  String get stdoutString => this.stdout.toString();
+  String get stderrString => this.stderr.toString();
 }
 
 const String _configExperimentalWarning =

@@ -197,12 +197,14 @@ void main() {
           noCache: any(named: 'noCache'),
           dockerfile: any(named: 'dockerfile'),
         ),
-      ).thenAnswer((_) async => (
-            'sha256:abc',
-            [
-              <String, dynamic>{'stream': 'ok'}
-            ]
-          ));
+      ).thenAnswer(
+        (_) async => (
+          'sha256:abc',
+          [
+            <String, dynamic>{'stream': 'ok'},
+          ],
+        ),
+      );
       final img = DockerImage(path: '/ctx', dockerClient: mockClient);
       await img.build();
       expect(

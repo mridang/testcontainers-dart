@@ -280,8 +280,10 @@ void main() {
         'StartPeriod': 15000000000,
         'StartInterval': 2000000000,
       });
-      expect(hc.test,
-          equals(['CMD-SHELL', 'curl -f http://localhost/ || exit 1']));
+      expect(
+        hc.test,
+        equals(['CMD-SHELL', 'curl -f http://localhost/ || exit 1']),
+      );
       expect(hc.interval, equals(30000000000));
       expect(hc.timeout, equals(10000000000));
       expect(hc.retries, equals(5));
@@ -1100,7 +1102,9 @@ void main() {
       });
       expect(driverConfig.name, equals('local'));
       expect(
-          driverConfig.options, equals({'type': 'tmpfs', 'device': 'tmpfs'}));
+        driverConfig.options,
+        equals({'type': 'tmpfs', 'device': 'tmpfs'}),
+      );
     });
   });
 
@@ -1255,7 +1259,7 @@ void main() {
         'Labels': {'com.example.owner': 'test'},
         'DriverConfig': {
           'Name': 'local',
-          'Options': {'device': 'tmpfs'}
+          'Options': {'device': 'tmpfs'},
         },
         'Subpath': 'data',
       });

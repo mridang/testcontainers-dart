@@ -174,7 +174,7 @@ void main() {
       // JSON is valid but the `auths` key is a list, not a map → TypeError
       // inside the parser, which must be wrapped as ArgumentError.
       final config = jsonEncode({
-        'auths': ['not', 'a', 'map']
+        'auths': ['not', 'a', 'map'],
       });
       expect(
         () => parseDockerAuthConfig(config),
