@@ -394,10 +394,7 @@ class ComposeContainer implements WaitStrategyTarget {
     try {
       _cachedContainerInfo =
           await compose._dockerClient.containerInspectInfo(containerId);
-    } catch (e, st) {
-      stderr.writeln(
-        'testcontainers: containerInfo($containerId) failed: $e\n$st',
-      );
+    } catch (_) {
       _cachedContainerInfo = null;
     }
     return _cachedContainerInfo;

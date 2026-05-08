@@ -915,15 +915,14 @@ void main() {
   // ContainerNetworkEndpoint — gwPriority field (untested)
   // ---------------------------------------------------------------------------
   group('ContainerNetworkEndpoint gwPriority', () {
-    test('parses gwPriority list', () {
+    test('parses gwPriority as int (Docker 25+ single-integer field)', () {
       final endpoint = ContainerNetworkEndpoint.fromJson({
         'NetworkID': 'net1',
         'IPAddress': '10.0.0.2',
         'Gateway': '10.0.0.1',
-        'GwPriority': [0, 1],
+        'GwPriority': 0,
       });
-      expect(endpoint.gwPriority, isNotNull);
-      expect(endpoint.gwPriority, equals([0, 1]));
+      expect(endpoint.gwPriority, equals(0));
     });
 
     test('gwPriority is null when key absent', () {
@@ -933,6 +932,16 @@ void main() {
         'Gateway': '10.0.0.1',
       });
       expect(endpoint.gwPriority, isNull);
+    });
+
+    test('gwPriority stores a non-zero priority value', () {
+      final endpoint = ContainerNetworkEndpoint.fromJson({
+        'NetworkID': 'net1',
+        'IPAddress': '10.0.0.2',
+        'Gateway': '10.0.0.1',
+        'GwPriority': 100,
+      });
+      expect(endpoint.gwPriority, equals(100));
     });
   });
 

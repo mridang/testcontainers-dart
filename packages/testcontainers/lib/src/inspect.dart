@@ -1351,8 +1351,8 @@ class ContainerNetworkEndpoint {
   /// Driver-specific options for this endpoint.
   final Map<String, String>? driverOpts;
 
-  /// Gateway priority list (internal field).
-  final List<int>? gwPriority;
+  /// Gateway priority for this endpoint (Docker 25+ field).
+  final int? gwPriority;
 
   /// Docker network ID.
   final String? networkID;
@@ -1411,7 +1411,7 @@ class ContainerNetworkEndpoint {
       aliases: (json['Aliases'] as List<dynamic>?)?.cast<String>(),
       driverOpts:
           (json['DriverOpts'] as Map<String, dynamic>?)?.cast<String, String>(),
-      gwPriority: (json['GwPriority'] as List<dynamic>?)?.cast<int>(),
+      gwPriority: json['GwPriority'] as int?,
       networkID: json['NetworkID'] as String?,
       endpointID: json['EndpointID'] as String?,
       gateway: json['Gateway'] as String?,
