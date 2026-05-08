@@ -95,8 +95,8 @@ Map<String, String> createLabels(
     labelTestcontainers: 'true',
     labelVersion: tcVersion,
     if (image !=
-      testcontainersConfig.hubImageNamePrefix +
-          testcontainersConfig.ryukImage)
+        testcontainersConfig.hubImageNamePrefix +
+            testcontainersConfig.ryukImage)
       labelSessionId: sessionId,
   };
 }

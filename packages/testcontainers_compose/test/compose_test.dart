@@ -145,8 +145,7 @@ void main() {
         final saved = testcontainersConfig.tcProperties['tc.host'];
         try {
           // A non-SSH Docker host must not trigger the SSH rewrite logic.
-          testcontainersConfig.tcProperties['tc.host'] =
-              'tcp://localhost:2375';
+          testcontainersConfig.tcProperties['tc.host'] = 'tcp://localhost:2375';
           const model = PublishedPortModel(
             url: '0.0.0.0',
             targetPort: 80,
