@@ -427,15 +427,18 @@ class DockerContainer implements WaitStrategyTarget {
 
   /// Returns the host port mapped to container [port].
   ///
+  /// Waits for the container to reach `'running'` status (via
+  /// [ContainerStatusWaitStrategy]) before querying the port mapping — mirrors
+  /// Python's `get_exposed_port()` which calls
+  /// `ContainerStatusWaitStrategy().wait_until_ready(self)` first.
+  ///
   /// When [ConnectionMode.useMappedPort] is `true`, queries the Docker daemon
   /// for the ephemeral port. Otherwise returns [port] as-is.
   @override
   Future<int> exposedPort(int port) async {
+    await ContainerStatusWaitStrategy().waitUntilReady(this);
     if (_dockerClient.connectionMode.useMappedPort) {
-      if (_containerId == null) {
-        return port;
-      }
-      return _dockerClient.port(_containerId!, port);
+      return _dockerClient.port(_requireContainerId, port);
     }
     return port;
   }

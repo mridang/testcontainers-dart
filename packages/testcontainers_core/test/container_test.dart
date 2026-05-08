@@ -685,11 +685,11 @@ void main() {
       expect(await c.containerHostIp(), equals('localhost'));
     });
 
-    test('exposedPort() returns port unchanged before start', () async {
+    test('exposedPort() throws StateError before start', () async {
       final c = DockerContainer('alpine');
-      // _containerId is null → returns port as-is (no Docker lookup possible).
-      expect(await c.exposedPort(8080), equals(8080));
-      expect(await c.exposedPort(5432), equals(5432));
+      // ContainerStatusWaitStrategy detects status == 'not_started' and throws.
+      // Mirrors Python's assert c is not None in _get_exposed_port().
+      await expectLater(c.exposedPort(8080), throwsA(isA<StateError>()));
     });
 
     test('reload() completes without error before start (no-op)', () async {
