@@ -25,7 +25,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
-import 'package:testcontainers/testcontainers.dart';
+import 'package:testcontainers_core/testcontainers.dart';
 
 // One-shot deprecation warning for getConfig — printed on the first call only.
 bool _getConfigWarningPrinted = false;

@@ -5,8 +5,8 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/config.dart';
-import 'package:testcontainers/src/docker_client.dart';
+import 'package:testcontainers_core/src/config.dart';
+import 'package:testcontainers_core/src/docker_client.dart';
 
 // Builds a single Docker multiplexed-log frame:
 // [streamType(1), padding(3), payloadLen big-endian(4), payload(N)]

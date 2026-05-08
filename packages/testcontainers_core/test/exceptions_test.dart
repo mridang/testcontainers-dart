@@ -2,7 +2,7 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/exceptions.dart';
+import 'package:testcontainers_core/src/exceptions.dart';
 
 void main() {
   group('ContainerStartException', () {

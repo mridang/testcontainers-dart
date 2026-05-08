@@ -2,7 +2,7 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/inspect.dart';
+import 'package:testcontainers_core/src/inspect.dart';
 
 void main() {
   group('ContainerInspectInfo.fromJson', () {

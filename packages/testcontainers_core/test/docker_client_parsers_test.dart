@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/docker_client.dart';
+import 'package:testcontainers_core/src/docker_client.dart';
 
 /// Encodes [text] as UTF-8 bytes.
 Uint8List _bytes(String text) => Uint8List.fromList(utf8.encode(text));

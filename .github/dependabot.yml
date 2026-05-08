@@ -1,7 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: 'pub'
-    directory: '/packages/testcontainers'
+    directory: '/packages/testcontainers_core'
     schedule:
       interval: 'weekly'
     commit-message:

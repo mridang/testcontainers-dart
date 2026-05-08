@@ -35,7 +35,7 @@ void main() async {
 ## Structured wait strategies
 
 ```dart
-import 'package:testcontainers/testcontainers.dart';
+import 'package:testcontainers_core/testcontainers.dart';
 
 final compose = DockerCompose(context: 'fixtures/myapp')
   ..waitingFor({

@@ -5,7 +5,7 @@ Core library for managing throwaway Docker containers in Dart tests.
 ## Usage
 
 ```dart
-import 'package:testcontainers/testcontainers.dart';
+import 'package:testcontainers_core/testcontainers.dart';
 
 void main() async {
   await DockerContainer.use(

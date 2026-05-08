@@ -3,8 +3,8 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:test/test.dart';
-import 'package:testcontainers/src/config.dart';
-import 'package:testcontainers/src/wait_strategies.dart';
+import 'package:testcontainers_core/src/config.dart';
+import 'package:testcontainers_core/src/wait_strategies.dart';
 import 'package:testcontainers_compose/testcontainers_compose.dart';
 
 final _fixtures = '${Directory.current.path}/test/compose_fixtures';

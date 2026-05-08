@@ -1,4 +1,4 @@
-name: testcontainers
+name: testcontainers_core
 description: >-
   Dart library for throwaway instances of anything that can run in a Docker container
 version: 0.1.0

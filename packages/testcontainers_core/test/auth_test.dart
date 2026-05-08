@@ -4,7 +4,7 @@ library;
 import 'dart:convert';
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/auth.dart';
+import 'package:testcontainers_core/src/auth.dart';
 
 void main() {
   group('parseDockerAuthConfig', () {

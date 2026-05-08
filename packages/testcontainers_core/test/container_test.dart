@@ -5,12 +5,12 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/config.dart';
-import 'package:testcontainers/src/container.dart';
-import 'package:testcontainers/src/exceptions.dart';
-import 'package:testcontainers/src/network.dart';
-import 'package:testcontainers/src/transferable.dart';
-import 'package:testcontainers/src/wait_strategies.dart';
+import 'package:testcontainers_core/src/config.dart';
+import 'package:testcontainers_core/src/container.dart';
+import 'package:testcontainers_core/src/exceptions.dart';
+import 'package:testcontainers_core/src/network.dart';
+import 'package:testcontainers_core/src/transferable.dart';
+import 'package:testcontainers_core/src/wait_strategies.dart';
 
 // ---------------------------------------------------------------------------
 // Helper subclasses used by the configure() hook tests

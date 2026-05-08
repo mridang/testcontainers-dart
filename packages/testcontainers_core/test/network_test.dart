@@ -2,7 +2,7 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/network.dart';
+import 'package:testcontainers_core/src/network.dart';
 
 // UUID v4 format: xxxxxxxx-xxxx-4xxx-[89ab]xxx-xxxxxxxxxxxx
 final _uuidV4Pattern = RegExp(

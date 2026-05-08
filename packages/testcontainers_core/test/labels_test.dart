@@ -2,8 +2,8 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/config.dart';
-import 'package:testcontainers/src/labels.dart';
+import 'package:testcontainers_core/src/config.dart';
+import 'package:testcontainers_core/src/labels.dart';
 
 void main() {
   group('createLabels', () {

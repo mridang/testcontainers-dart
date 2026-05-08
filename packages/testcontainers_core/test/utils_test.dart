@@ -4,7 +4,7 @@ library;
 import 'dart:io';
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/utils.dart';
+import 'package:testcontainers_core/src/utils.dart';
 
 void main() {
   group('insideContainer', () {

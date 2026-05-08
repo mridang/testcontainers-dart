@@ -2,7 +2,7 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/config.dart';
+import 'package:testcontainers_core/src/config.dart';
 
 void main() {
   group('TestcontainersConfiguration', () {

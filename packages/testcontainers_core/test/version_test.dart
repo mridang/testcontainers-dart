@@ -2,7 +2,7 @@
 library;
 
 import 'package:test/test.dart';
-import 'package:testcontainers/src/version.dart';
+import 'package:testcontainers_core/src/version.dart';
 
 void main() {
   group('ComparableVersion', () {

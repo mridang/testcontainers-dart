@@ -3,8 +3,8 @@ library;
 
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
-import 'package:testcontainers/src/docker_client.dart';
-import 'package:testcontainers/src/image.dart';
+import 'package:testcontainers_core/src/docker_client.dart';
+import 'package:testcontainers_core/src/image.dart';
 
 class _MockDockerClient extends Mock implements DockerClient {}
 

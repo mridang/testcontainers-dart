@@ -6,7 +6,7 @@ import 'dart:typed_data';
 
 import 'package:archive/archive.dart';
 import 'package:test/test.dart';
-import 'package:testcontainers/src/transferable.dart';
+import 'package:testcontainers_core/src/transferable.dart';
 
 void main() {
   group('buildTransferTar', () {

@@ -8,9 +8,9 @@ import 'dart:typed_data';
 
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
-import 'package:testcontainers/src/inspect.dart';
-import 'package:testcontainers/src/wait_strategies.dart';
-import 'package:testcontainers/src/waiting_utils.dart';
+import 'package:testcontainers_core/src/inspect.dart';
+import 'package:testcontainers_core/src/wait_strategies.dart';
+import 'package:testcontainers_core/src/waiting_utils.dart';
 
 class MockWaitStrategyTarget extends Mock implements WaitStrategyTarget {}
 
