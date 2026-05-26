@@ -28,3 +28,6 @@ Thumbs.db
 
 # Docker image cache (CI only)
 docker_images/
+node_modules/
+package.json
+package-lock.json

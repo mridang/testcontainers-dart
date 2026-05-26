@@ -8,21 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "node diag.mjs"
-      }
-    ],
-    [
-      "semantic-release-pub",
-      {
-        "pkgRoot": "packages/testcontainers_core",
-        "publishPub": false
-      }
-    ],
-    [
-      "semantic-release-pub",
-      {
-        "pkgRoot": "packages/testcontainers_compose",
-        "publishPub": false
+        "prepareCmd": "node bump-pubspec.mjs ${nextRelease.version}"
       }
     ],
     [
