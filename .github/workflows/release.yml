@@ -49,6 +49,11 @@ jobs:
           git fetch --tags
           echo "tag=$(git tag -l 'v*' --sort=-version:refname | head -1)" >> "$GITHUB_OUTPUT"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
         with:
