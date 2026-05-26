@@ -1,7 +1,7 @@
 name: testcontainers_compose
 description: >-
   Docker Compose support for the testcontainers Dart library
-version: 1.0.8
+version: 1.0.9
 homepage: https://github.com/mridang/testcontainers-dart
 repository: https://github.com/mridang/testcontainers-dart
 issue_tracker: https://github.com/mridang/testcontainers-dart/issues
