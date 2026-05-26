@@ -20,7 +20,7 @@ void main() {
       final archive = TarDecoder().decodeBytes(tar);
       expect(archive.files.length, equals(1));
       expect(archive.files.first.name, equals('hello.txt'));
-      final content = archive.files.first.content as Uint8List;
+      final content = archive.files.first.content;
       expect(String.fromCharCodes(content), equals('hello world'));
     });
 
@@ -73,7 +73,7 @@ void main() {
         expect(archive.files.length, equals(1));
         expect(archive.files.first.name, equals('/dest/hello.txt'));
         expect(archive.files.first.mode, equals(0x1ED));
-        final content = archive.files.first.content as Uint8List;
+        final content = archive.files.first.content;
         expect(String.fromCharCodes(content), equals('file content'));
       } finally {
         tmp.deleteSync(recursive: true);
