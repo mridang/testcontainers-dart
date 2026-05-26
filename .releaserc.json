@@ -6,9 +6,17 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/exec",
+      "semantic-release-pub",
       {
-        "prepareCmd": "perl -pi -e 's/^version: .*/version: ${nextRelease.version}/' packages/testcontainers_core/pubspec.yaml packages/testcontainers_compose/pubspec.yaml && perl -pi -e \"s/const String tcVersion = '[^']*'/const String tcVersion = '${nextRelease.version}'/\" packages/testcontainers_core/lib/src/labels.dart"
+        "pkgRoot": "packages/testcontainers_core",
+        "publishPub": false
+      }
+    ],
+    [
+      "semantic-release-pub",
+      {
+        "pkgRoot": "packages/testcontainers_compose",
+        "publishPub": false
       }
     ],
     [
@@ -23,8 +31,7 @@
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
         "assets": [
           "packages/testcontainers_core/pubspec.yaml",
-          "packages/testcontainers_compose/pubspec.yaml",
-          "packages/testcontainers_core/lib/src/labels.dart"
+          "packages/testcontainers_compose/pubspec.yaml"
         ]
       }
     ]

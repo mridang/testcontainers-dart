@@ -5,6 +5,9 @@
 /// reads these labels to identify and clean up orphaned resources.
 library;
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:uuid/uuid.dart';
 
 import 'config.dart';
@@ -39,10 +42,47 @@ const String labelLang = 'org.testcontainers.lang';
 
 /// The current version of this Dart testcontainers library.
 ///
-/// Hardcoded constant — must be kept in sync with the `version` field in
-/// `packages/testcontainers/pubspec.yaml` on every release. Stamped on
-/// every container, network, and image resource via [labelVersion].
-const String tcVersion = '1.0.10';
+/// Lazily resolved at first access by locating the package's own
+/// `pubspec.yaml` via `.dart_tool/package_config.json`. Falls back to
+/// `'unknown'` if the config cannot be read (e.g. in unusual environments).
+/// Stamped on every container, network, and image resource via [labelVersion].
+final String tcVersion = _readTcVersion();
+
+String _readTcVersion() {
+  try {
+    var dir = Directory.current;
+    for (var i = 0; i < 10; i++) {
+      final configFile = File('${dir.path}/.dart_tool/package_config.json');
+      if (configFile.existsSync()) {
+        final config =
+            jsonDecode(configFile.readAsStringSync()) as Map<String, dynamic>;
+        final packages =
+            (config['packages'] as List).cast<Map<String, dynamic>>();
+        final pkg = packages.firstWhere(
+          (p) => p['name'] == 'testcontainers_core',
+          orElse: () => <String, dynamic>{},
+        );
+        if (pkg.isNotEmpty) {
+          final rootUri = pkg['rootUri'] as String;
+          final pkgRoot = configFile.parent.uri.resolve(rootUri);
+          final pubspecFile = File.fromUri(pkgRoot.resolve('pubspec.yaml'));
+          if (pubspecFile.existsSync()) {
+            final m = RegExp(
+              r'^version:\s+(\S+)',
+              multiLine: true,
+            ).firstMatch(pubspecFile.readAsStringSync());
+            if (m != null) return m.group(1)!;
+          }
+        }
+        break;
+      }
+      final parent = dir.parent;
+      if (parent.path == dir.path) break;
+      dir = parent;
+    }
+  } catch (_) {}
+  return 'unknown';
+}
 
 /// The language binding identifier placed in [labelLang].
 const String labelLangValue = 'dart';
