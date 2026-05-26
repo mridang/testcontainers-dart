@@ -1,14 +1,18 @@
-import { readFileSync } from 'node:fs';
-import { parse as parseDirect } from './node_modules/yaml/dist/index.js';
-import { parse as parseBare } from 'yaml';
+// Monkey-patch semantic-release-pub to log the pluginConfig it receives
+import { readFileSync, writeFileSync } from 'node:fs';
 
-const yamlVer = JSON.parse(readFileSync('./node_modules/yaml/package.json', 'utf-8')).version;
-const data = readFileSync('packages/testcontainers_core/pubspec.yaml', 'utf-8');
+const preparePath = './node_modules/semantic-release-pub/dist/prepare.js';
+const original = readFileSync(preparePath, 'utf-8');
 
-const o1 = parseDirect(data);
-const o2 = parseBare(data);
+// Inject a log at the top of the prepare function
+const patched = original.replace(
+  'export const prepare = async (pluginConfig,',
+  'export const prepare = async (pluginConfig, ...rest) => { console.log("srp-pluginConfig:", JSON.stringify(pluginConfig)); return _prepare(pluginConfig, ...rest); };\nexport const _prepare = async (pluginConfig,'
+);
 
-console.log('yaml pkg version:', yamlVer);
-console.log('direct import -> version:', o1.version, '| typeof:', typeof o1.version);
-console.log('bare import   -> version:', o2.version, '| typeof:', typeof o2.version);
-console.log('same parse fn:', parseDirect === parseBare);
+if (patched === original) {
+  console.log('PATCH FAILED - string not found');
+} else {
+  writeFileSync(preparePath, patched);
+  console.log('Patched prepare.js to log pluginConfig');
+}
