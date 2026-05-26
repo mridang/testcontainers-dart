@@ -5,6 +5,8 @@
 /// methods when something goes wrong with a container's lifecycle or networking.
 library;
 
+import 'package:meta/meta.dart';
+
 /// Thrown when a container cannot be started.
 ///
 /// This typically indicates a problem at the `docker run` / `POST
@@ -20,6 +22,7 @@ library;
 ///   print(e.message); // human-readable reason
 /// }
 /// ```
+@immutable
 class ContainerStartException implements Exception {
   /// Human-readable description of why the container could not be started.
   final String message;
@@ -45,6 +48,7 @@ class ContainerStartException implements Exception {
 ///   print(e.message);
 /// }
 /// ```
+@immutable
 class ContainerConnectException implements Exception {
   /// Human-readable description of why the connection could not be established.
   final String message;
@@ -71,6 +75,7 @@ class ContainerConnectException implements Exception {
 ///   print(e.message);
 /// }
 /// ```
+@immutable
 class ContainerIsNotRunning implements Exception {
   /// Human-readable description of which container is not running and why.
   final String message;
@@ -95,6 +100,7 @@ class ContainerIsNotRunning implements Exception {
 ///   print(e.message);
 /// }
 /// ```
+@immutable
 class NoSuchPortExposed implements Exception {
   /// Human-readable description of which port was not found and on which service.
   final String message;
