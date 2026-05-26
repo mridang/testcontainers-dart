@@ -6,6 +6,12 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "echo '=== CWD ===' && pwd && echo '=== core pubspec ===' && cat packages/testcontainers_core/pubspec.yaml && echo '=== compose pubspec ===' && cat packages/testcontainers_compose/pubspec.yaml"
+      }
+    ],
+    [
       "semantic-release-pub",
       {
         "pkgRoot": "packages/testcontainers_core",
