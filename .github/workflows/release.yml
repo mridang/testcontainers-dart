@@ -54,6 +54,7 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+          cache-dependency-path: '.releaserc.json'
 
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
