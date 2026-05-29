@@ -9,14 +9,14 @@
       "semantic-release-pub",
       {
         "pkgRoot": "packages/testcontainers_core",
-        "publishPub": false
+        "publishPub": true
       }
     ],
     [
       "semantic-release-pub",
       {
         "pkgRoot": "packages/testcontainers_compose",
-        "publishPub": false
+        "publishPub": true
       }
     ],
     [
