@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.0/.schema/devbox.schema.json",
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.13.6/.schema/devbox.schema.json",
   "packages": [
     "dart@3.7.2",
     "docker@latest",
@@ -20,7 +20,8 @@
       "test:unit": "melos run test:unit",
       "test:integration": "melos run test:integration",
       "analyze": "melos run analyze",
-      "format": "melos run format:fix",
+      "format": "melos run format",
+      "format:fix": "melos run format:fix",
       "doc": "melos run doc"
     }
   }

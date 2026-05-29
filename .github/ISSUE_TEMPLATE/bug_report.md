@@ -8,7 +8,7 @@ assignees: ''
 
 **Versions Used**
 
-<!-- Dart version, Docker version, testcontainers-dart version -->
+<!-- The ver. -->
 
 **Description**
 

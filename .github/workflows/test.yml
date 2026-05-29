@@ -39,9 +39,8 @@ jobs:
             else
               mkdir -p "$IMAGES_DIR"
               IMAGES=$(docker compose -f "$DOCKER_COMPOSE_FILE" config --images)
-              docker pull alpine:latest
-              docker pull nginx:alpine-slim
-              docker image save alpine:latest nginx:alpine-slim --output="$COMBINED_IMAGES_TAR"
+              echo "$IMAGES" | xargs -r docker pull
+              echo "$IMAGES" | xargs -r docker image save --output="$COMBINED_IMAGES_TAR"
             fi
           else
             echo "No docker-compose file found. Exiting."
