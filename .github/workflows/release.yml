@@ -52,7 +52,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24.16'
+          node-version-file: '.nvmrc'
 
       - name: Run semantic-release
         uses: mridang/action-semantic-release@v2
