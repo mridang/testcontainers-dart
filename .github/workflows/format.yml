@@ -16,6 +16,9 @@ jobs:
       PUB_CACHE: ${{ github.workspace }}/.pub
 
     steps:
+      - name: Runner Common Setup
+        uses: mridang/action-runner-common@v1
+
       - name: Checkout code
         uses: actions/checkout@v5
 
