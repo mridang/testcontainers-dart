@@ -22,33 +22,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: ./docker_images
-          key: ${{ runner.os }}-docker-${{ hashFiles('**/compose.yaml', '**/docker-compose.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-
-
-      - name: Docker pull
-        run: |
-          IMAGES_DIR="./docker_images"
-          COMBINED_IMAGES_TAR="$IMAGES_DIR/combined_images.tar"
-          DOCKER_COMPOSE_FILE="packages/testcontainers_compose/test/compose_fixtures/port_single/compose.yaml"
-
-          if [ -f "$DOCKER_COMPOSE_FILE" ]; then
-            if [ -f "$COMBINED_IMAGES_TAR" ]; then
-              docker image load -i "$COMBINED_IMAGES_TAR"
-            else
-              mkdir -p "$IMAGES_DIR"
-              IMAGES=$(docker compose -f "$DOCKER_COMPOSE_FILE" config --images)
-              echo "$IMAGES" | xargs -r docker pull
-              echo "$IMAGES" | xargs -r docker image save --output="$COMBINED_IMAGES_TAR"
-            fi
-          else
-            echo "No docker-compose file found. Exiting."
-          fi
-
       - name: Setup Dart
         uses: dart-lang/setup-dart@v1
         with:
