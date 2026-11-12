@@ -3,7 +3,7 @@ name: Format Code (dart format)
 on: push
 
 permissions:
-  contents: write
+  contents: read
 
 defaults:
   run:
@@ -41,15 +41,5 @@ jobs:
           echo "$PUB_CACHE/bin" >> "$GITHUB_PATH"
           "$PUB_CACHE/bin/melos" bootstrap
 
-      - name: Run dart format
-        run: melos run format:fix
-
-      - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Apply dart format
-          commit_options: '--no-verify'
-          repository: .
-          commit_user_name: github-actions[bot]
-          commit_user_email: github-actions[bot]@users.noreply.github.com
-          commit_author: GitHub Actions <actions@github.com>
+      - name: Check dart format
+        run: melos run format
